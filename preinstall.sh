@@ -28,26 +28,26 @@ ldconfig
 #其他无法通过Yum安装的工具
 #下载Libmcrypt,mhash,mcrypt
 cd /root
-wget http://source.ocha.so/libmcrypt-2.5.8.tar.gz
-wget http://source.ocha.so/mcrypt-2.6.8.tar.gz
-wget http://source.ocha.so/mhash-0.9.9.9.tar.gz
-tar -zxf libmcrypt-2.5.8.tar.gz
-tar -zxf mcrypt-2.6.8.tar.gz
-tar -zxf mhash-0.9.9.9.tar.gz
-cd /root/libmcrypt-2.5.8
+wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
+wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
+wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
+tar -zxf libmcrypt.tar.gz
+tar -zxf mcrypt.tar.gz
+tar -zxf mhash.tar.gz
+cd /root/libmcrypt*
 ./configure
 make && make install
-cd /root/mhash-0.9.9.9
+cd /root/mhash*
 ./configure
 make && make install
-cd /root/mcrypt-2.6.8
+cd /root/mcrypt*
 ./configure
 make && make install
 
 #安装bison
 yum -y remove bison*
 cd /root
-wget http://source.ocha.so/bison.tar.gz
+wget -O bison.tar.gz http://sourceforge.net/projects/lanmp/files/bison-3.0.4.tar.gz/download
 tar -zxf bison.tar.gz
 cd /root/bison*
 ./configure
@@ -55,7 +55,7 @@ make && make install
 
 #安装pcre
 cd /root
-wget http://source.ocha.so/pcre.tar.gz
+wget -O pcre.tar.gz http://sourceforge.net/projects/lanmp/files/pcre-8.36.tar.gz/download
 tar -zxf pcre.tar.gz
 cd /root/pcre*
 ./configure
@@ -63,7 +63,7 @@ make && make install
 
 #安装CMake
 cd /root
-wget http://source.ocha.so/cmake.tar.gz
+wget -O cmake.tar.gz http://sourceforge.net/projects/lanmp/files/cmake-3.2.0-rc2.tar.gz/download
 tar -zxf cmake.tar.gz
 cd /root/cmake*
 ./bootstrap
@@ -71,16 +71,16 @@ make && make install
 
 #安装APR
 cd /root
-wget http://source.ocha.so/apr.tar.gz
-tar -zxf apr*
+wget -O apr.tar.gz http://sourceforge.net/projects/lanmp/files/apr-1.5.1.tar.gz/download
+tar -zxf apr.tar.gz
 cd apr*
 ./configure --prefix=/usr/local/apr
 make && make install
 
 #安装APR-util
 cd /root
-wget http://source.ocha.so/apr-util.tar.gz
-tar -zxf apr-util*
+wget -O apr-util.tar.gz http://sourceforge.net/projects/lanmp/files/apr-util-1.5.4.tar.gz/download
+tar -zxf apr-util.tar.gz
 cd apr-util*
 ./configure --prefix=/usr/local/apr-util -with-apr=/usr/local/apr/bin/apr-1-config
 make && make install
@@ -92,24 +92,6 @@ ldconfig
 
 cd /root
 
-#下载其它安装脚本
-read -p "Would you want to download other scripts?[Y/N]" ifdownload
-if [ "$ifdownload" = "Y" ] || [ "$ifdownload" = "y" ];then
-	echo "Downloading..."
-	cd /root
-	wget http://source.ocha.so/nginx.sh
-	chmod +x nginx.sh
-	wget http://source.ocha.so/apache.sh
-	chmod +x apache.sh
-	wget http://source.ocha.so/mariadb.sh
-	chmod +x mariadb.sh
-	wget http://source.ocha.so/php-nginx.sh
-	chmod +x php-nginx.sh
-	wget http://source.ocha.so/php-apache.sh
-	chmod +x php-apache.sh
-else
-	echo "Quit without downloading..."
-fi
 
 echo "========================================================================="
 echo "编译环境已安装完成，请运行其他安装脚本 Script Written by Junorz.com"
