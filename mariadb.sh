@@ -15,8 +15,8 @@ useradd -r -g mysql mysql
 
 #下载编译
 cd /root
-wget http://source.ocha.so/mariadb.tar.gz
-tar -zxf mariadb*.tar.gz
+wget -O mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17.tar.gz/download
+tar -zxf mariadb.tar.gz
 cd mariadb*
 cmake .
 make && make install

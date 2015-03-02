@@ -10,8 +10,8 @@ fi
 
 #下载编译
 cd /root
-wget http://source.ocha.so/php.tar.gz
-tar -zxf php*.tar.gz
+wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.6.tar.gz/download
+tar -zxf php.tar.gz
 cd php*
 ./configure --prefix=/usr/local/php \
 --with-config-file-path=/usr/local/php/etc \
@@ -88,11 +88,10 @@ unzip tz.zip
 rm -rf /usr/local/nginx/html/tz.zip
 
 #下载phpMyAdmin
-wget -O /usr/local/nginx/html/phpmyadmin.zip http://source.ocha.so/phpmyadmin.zip
-cd /usr/local/nginx/html/
-unzip phpmyadmin.zip
+wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.3.11/phpMyAdmin-4.3.11-all-languages.tar.gz/download
+tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
-rm -rf /usr/local/nginx/html/phpmyadmin.zip
+rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
 
 cd /root
 
