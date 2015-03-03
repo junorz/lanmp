@@ -9,7 +9,7 @@ fi
 
 #通过Yum安装编译环境
 yum -y groupinstall "Development Tools"
-yum -y install wget unzip libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel curl curl-devel libtool libtool-ltdl-devel openssl-devel ncurses ncurses-devel
+yum -y install wget unzip libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel curl curl-devel libtool libtool-ltdl-devel openssl-devel ncurses ncurses-devel libaio*
 
 #删除预安装项
 yum -y remove mysql-server mysql mysql-libs
