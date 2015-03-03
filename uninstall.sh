@@ -47,6 +47,8 @@ elif [ "$uninst" = 3 ]; then
 	rm -rf /usr/local/mysql
 	rm -rf /etc/my.cnf
 	rm -rf /root/mariadb*
+	sed -i "/mysql/d" /etc/ld.so.conf
+	ldconfig
 elif [ "$uninst" = 4 ]; then
 	echo "卸载PHP-with-Nginx"
 	pkill php
@@ -80,6 +82,11 @@ elif [ "$uninst" = 6 ]; then
 	sed -i "/php/d" /etc/rc.d/rc.local
 	rm -rf /usr/local/php
 	rm -rf /root/php*
+	
+	sed -i "/\/usr\/local\/lib/d" /etc/ld.so.conf
+	sed -i "/apr/d" /etc/ld.so.conf
+	sed -i "/mysql/d" /etc/ld.so.conf
+	ldconfig
 elif [ "$uninst" = 7 ]; then
 	echo "卸载LAMP"
 	service httpd stop
@@ -97,6 +104,11 @@ elif [ "$uninst" = 7 ]; then
 	
 	rm -rf /usr/local/php
 	rm -rf /root/php*
+	
+	sed -i "/\/usr\/local\/lib/d" /etc/ld.so.conf
+	sed -i "/apr/d" /etc/ld.so.conf
+	sed -i "/mysql/d" /etc/ld.so.conf
+	ldconfig
 else
 	echo "Please input 1-7.Try to run this script again."
 	exit 1
