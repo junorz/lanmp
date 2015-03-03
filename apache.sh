@@ -1,5 +1,12 @@
 #!/bin/bash
-#Welcome http://www.junorz.com
+#====================================================================
+# Apache Auto Install Script
+#
+# Copyright (c) 2011-2015 Junorz.com All rights reserved.
+# 
+# Intro: http://www.junorz.com/archives/374.html
+#
+#====================================================================
 
 
 # 检查是否为管理员
@@ -41,6 +48,6 @@ chkconfig --add httpd
 service httpd start
 
 
-echo "========================================================================="
-echo "Apache已安装完成，请运行其他安装脚本 Script Written by Junorz.com"
-echo "========================================================================="
+echo "==========================================="
+echo "脚本已运行完成 Script Written by Junorz.com"
+echo "==========================================="

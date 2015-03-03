@@ -1,6 +1,12 @@
 #!/bin/bash
-#Welcome http://www.junorz.com
-
+#====================================================================
+# PHP with Apache Auto Install Script
+#
+# Copyright (c) 2011-2015 Junorz.com All rights reserved.
+# 
+# Intro: http://www.junorz.com/archives/374.html
+#
+#====================================================================
 
 # 检查是否为管理员
 if [ $(id -u) != "0" ]; then
@@ -68,6 +74,8 @@ sed -i "s/;date.timezone =/date.timezone = Asia\/Shanghai/g" /usr/local/php/etc/
 sed -i "s/post_max_size =.*/post_max_size = 50M/g" /usr/local/php/etc/php.ini
 sed -i "s/upload_max_filesize =.*/upload_max_filesize = 50M/g" /usr/local/php/etc/php.ini
 
+#重启服务器
+service httpd restart
 
 #下载探针
 wget -O /usr/local/apache/htdocs/tz.zip http://www.yahei.net/tz/tz.zip
@@ -81,11 +89,9 @@ tar -zxf /usr/local/apache/htdocs/phpmyadmin.tar.gz -C /usr/local/apache/htdocs/
 mv /usr/local/apache/htdocs/phpMyAdmin-* /usr/local/apache/htdocs/phpmyadmin
 rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
 
-#重启服务器
-service httpd restart
 
-echo "========================================================================="
-echo "PHP With Nginx已安装完成，请运行其他安装脚本 Script Written by Junorz.com"
+echo "================================================"
+echo "脚本已运行完成 Script Written by Junorz.com"
 echo "访问http://您的网址/tz.php可以访问PHP探针"
 echo "访问http://您的网址/phpmyadmin可以访问phpmyadmin"
-echo "========================================================================="
+echo "================================================"

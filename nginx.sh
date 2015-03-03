@@ -1,5 +1,12 @@
 #!/bin/bash
-#Welcome http://www.junorz.com
+#====================================================================
+# Apache Auto Install Script
+#
+# Copyright (c) 2011-2015 Junorz.com All rights reserved.
+# 
+# Intro: http://www.junorz.com/archives/374.html
+#
+#====================================================================
 
 # 检查是否为管理员
 if [ $(id -u) != "0" ]; then
@@ -16,6 +23,13 @@ if [ "$vernginx" = "" ]; then
 fi
 read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstall
 if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; then
+	#创建运行Nginx进程的用户
+	groupadd www
+	useradd -s /sbin/nologin -g www www
+
+	#避免系统找不到PCRE等库
+	export LD_LIBRARY_PATH=/usr/local/lib
+	
 	cd /root
 	wget -O nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
 	tar -zxf nginx.tar.gz
@@ -23,17 +37,9 @@ if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; th
 	./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-ipv6
 	make && make install
 else
-	echo "Installation interrupted"
-	exit 1;
+	echo "Installation interrupted.Try to run this script again."
+	exit 1
 fi
-
-#创建运行Nginx进程的用户
-groupadd www
-useradd -s /sbin/nologin -g www www
-
-#避免系统找不到PCRE等库
-export LD_LIBRARY_PATH=/usr/local/lib
-
 
 #软链接以便命令行直接调用
 ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
@@ -48,7 +54,6 @@ echo "/usr/bin/nginx" >> /etc/rc.d/rc.local
 #启动Nginx
 /usr/bin/nginx
 
-
-echo "========================================================================="
-echo "Nginx已安装完成，请运行其他安装脚本 Script Written by Junorz.com"
-echo "========================================================================="
+echo "==========================================="
+echo "脚本已运行完成 Script Written by Junorz.com"
+echo "==========================================="

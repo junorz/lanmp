@@ -1,7 +1,14 @@
 #!/bin/bash
-#Welcome http://www.junorz.com
-#为了配合以往的习惯，以及官方文档，因此MariaDB安装在/usr/local/mysql下
-#其他地方也没有特意地将MySQL换成MariaDB
+#====================================================================
+# MariaDB Combining from source Auto Install Script
+#
+# Copyright (c) 2011-2015 Junorz.com All rights reserved.
+# 
+# Intro: http://www.junorz.com/archives/374.html
+#
+# 为了配合以往的习惯，以及官方文档，因此MariaDB安装在/usr/local/mysql
+# 其他地方也没有特意地将MySQL换成MariaDB
+#====================================================================
 
 # 检查是否为管理员
 if [ $(id -u) != "0" ]; then
@@ -49,6 +56,6 @@ fi
 /usr/local/mysql/bin/mysqladmin -u root password $rootpwd
 echo "MariaDB root password has set to:$rootpwd"
 
-echo "============================================================================="
-echo "Mariadb已安装完成，请运行其他安装脚本 Script Written by Junorz.com"
-echo "============================================================================="
+echo "==========================================="
+echo "脚本已运行完成 Script Written by Junorz.com"
+echo "==========================================="
