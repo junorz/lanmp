@@ -9,7 +9,7 @@ fi
 
 #自定义Nginx版本
 #版本号参照http://nginx.org/en/download.html
-echo "The version of Nginx can be refernced to http://nginx.org/en/download.html"
+echo "The version of Nginx can be referenced to http://nginx.org/en/download.html"
 read -p "Enter the version you want to install(1.6.2 by deafult):" vernginx
 if [ "$vernginx" = "" ]; then
 	vernginx="1.6.2"
