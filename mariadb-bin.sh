@@ -20,8 +20,11 @@ if [ "$sysbit" = "32" ]; then
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
 		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
-	else
+	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
 		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
+	else
+		echo "Please enter Y or N.Try to run this script again."
+		exit 1
 	fi
 elif [ "$sysbit" = "64" ]; then
 	yum -y install glibc
@@ -29,8 +32,11 @@ elif [ "$sysbit" = "64" ]; then
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
 		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
-	else
+	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
 		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
+	else
+		echo "Please enter Y or N.Try to run this script again."
+		exit 1
 	fi
 else
 	echo "Cannot detect your system's type.Please enter a legal value."
