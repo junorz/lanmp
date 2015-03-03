@@ -47,13 +47,13 @@ else
 fi
 
 #MariaDB密码
-read -p "Enter a password for root:" rootpwd
+read -p "Enter a password for MariaDB root:" rootpwd
 if [ "$rootpwd" = "" ]; then
 	rootpwd="root"
 fi
-echo "========================================="
-echo "MariaDB root password has set to:$rootpwd"
-echo "========================================="
+echo "=================================================="
+echo "MariaDB root password will be  set to:$rootpwd"
+echo "=================================================="
 
 #自定义Nginx版本
 #版本号参照http://nginx.org/en/download.html
@@ -157,9 +157,6 @@ ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
 
 #加入开机自启动，如果不需要自在/etc/rc.d/rc.local文件里删除相应命令
 echo "/usr/bin/nginx" >> /etc/rc.d/rc.local
-
-#启动Nginx
-/usr/bin/nginx
 
 #================================安装MariaDB二进制版本==================================
 cd /root
@@ -278,8 +275,8 @@ sed -i "s/upload_max_filesize =.*/upload_max_filesize = 50M/g" /usr/local/php/et
 mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx-backup.conf
 wget -O /usr/local/nginx/conf/nginx.conf http://source.ocha.so/nginx.conf
 
-#重启nginx
-/usr/bin/nginx -s reload
+#启动nginx
+/usr/bin/nginx
 
 #启动php-fpm进程
 /usr/bin/php

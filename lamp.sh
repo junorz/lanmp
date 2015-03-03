@@ -47,13 +47,13 @@ else
 fi
 
 #MariaDB密码
-read -p "Enter a password for root:" rootpwd
+read -p "Enter a password for MariaDB root:" rootpwd
 if [ "$rootpwd" = "" ]; then
 	rootpwd="root"
 fi
-echo "========================================="
-echo "MariaDB root password has set to:$rootpwd"
-echo "========================================="
+echo "=================================================="
+echo "MariaDB root password will be  set to:$rootpwd"
+echo "=================================================="
 
 #================================安装编译环境==================================
 
@@ -163,7 +163,6 @@ sed -i "3 a #description:httpd" /usr/local/apache/bin/apachectl
 #添加服务
 cp /usr/local/apache/bin/apachectl /etc/init.d/httpd
 chkconfig --add httpd
-service httpd start
 
 #================================安装MariaDB二进制版本==================================
 cd /root
@@ -275,8 +274,8 @@ sed -i "s/;date.timezone =/date.timezone = Asia\/Shanghai/g" /usr/local/php/etc/
 sed -i "s/post_max_size =.*/post_max_size = 50M/g" /usr/local/php/etc/php.ini
 sed -i "s/upload_max_filesize =.*/upload_max_filesize = 50M/g" /usr/local/php/etc/php.ini
 
-#重启服务器
-service httpd restart
+#启动Apache
+service httpd start
 
 #下载探针
 wget -O /usr/local/apache/htdocs/tz.zip http://www.yahei.net/tz/tz.zip
