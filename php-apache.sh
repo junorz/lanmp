@@ -77,7 +77,7 @@ rm -rf /usr/local/apache/htdocs/tz.zip
 
 #下载phpMyAdmin
 wget -O /usr/local/apache/htdocs/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.3.11/phpMyAdmin-4.3.11-all-languages.tar.gz/download
-tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/apache/htdocs/
+tar -zxf /usr/local/apache/htdocs/phpmyadmin.tar.gz -C /usr/local/apache/htdocs/
 mv /usr/local/apache/htdocs/phpMyAdmin-* /usr/local/apache/htdocs/phpmyadmin
 rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
 
