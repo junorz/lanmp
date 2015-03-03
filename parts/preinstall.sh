@@ -90,7 +90,6 @@ echo "/usr/local/apr/lib" >> /etc/ld.so.conf
 echo "/usr/local/apr-util/lib" >> /etc/ld.so.conf
 ldconfig
 
-
-echo "========================================================================="
-echo "编译环境已安装完成，请运行其他安装脚本 Script Written by Junorz.com"
-echo "========================================================================="
+echo "==========================================="
+echo "脚本已运行完成 Script Written by Junorz.com"
+echo "==========================================="
