@@ -293,8 +293,8 @@ rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
 
 echo "========================================================================="
 echo "Centos + Apache + MariaDB + PHP 环境已安装完成，您可以用以下命令进行管理"
-echo "Apache:		service httpd {start|stop|restart}"
-echo "MariaDB:		service mysqld {start|stop|restart}"
+echo "Apache:    service httpd {start|stop|restart}"
+echo "MariaDB:   service mysqld {start|stop|restart}"
 echo "访问http://您的网址/tz.php可以访问PHP探针"
 echo "访问http://您的网址/phpmyadmin可以访问phpmyadmin"
 echo "Script Written by Junorz.com"

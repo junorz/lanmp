@@ -296,9 +296,9 @@ rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
 
 echo "========================================================================="
 echo "Centos + Nginx + MariaDB + PHP 环境已安装完成，您可以用以下命令进行管理"
-echo "Nginx:		启动：nginx|重载：nginx -s reload|停止：nginx -s stop"
-echo "PHP-FPM:		启动：php|停止：pkill php"
-echo "MariaDB:		service mysqld {start|stop|restart}"
+echo "Nginx:    启动：nginx|重载：nginx -s reload|停止：nginx -s stop"
+echo "PHP-FPM:  启动：php|停止：pkill php"
+echo "MariaDB:  service mysqld {start|stop|restart}"
 echo "访问http://您的网址/tz.php可以访问PHP探针"
 echo "访问http://您的网址/phpmyadmin可以访问phpmyadmin"
 echo "Script Written by Junorz.com"
