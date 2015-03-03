@@ -4,6 +4,7 @@
 <li>已在<code>Centos6</code>/<code>Centos7</code>的32和64位系统下测试完成。</li>
 <li>目前可以布署的组合有<code>Nginx</code>+<code>MariaDB</code>+<code>PHP</code>或<code>Apache</code>+<code>MariaDB</code>+<code>PHP</code></li>
 <li>分步安装可以避免一键包中途产生错误需要重头再来的问题。</li>
+<li>使用的软件版本号为：<code>Nginx1.62~1.7.10</code>（可自定义）/<code>Apache2.4.12</code>/<code>MariaDB10.0.17</code>/<code>PHP5.6.6</code></li>
 </ol>
 
 <h1>一键包安装使用教程</h1>
