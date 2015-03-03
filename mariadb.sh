@@ -15,8 +15,8 @@ useradd -r -g mysql mysql
 
 #下载编译
 cd /root
-wget -O mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17.tar.gz/download
-tar -zxf mariadb.tar.gz
+wget http://source.ocha.so/mariadb.tar.gz
+tar -zxf mariadb*.tar.gz
 cd mariadb*
 cmake .
 make && make install
@@ -38,9 +38,6 @@ chkconfig --add mysqld
 echo "/usr/local/mysql/lib" >> /etc/ld.so.conf
 ldconfig
 
-#启动服务
-service mysqld start
-
 #设置管理员密码
 read -p "Enter a password for root:" rootpwd
 if [ "$rootpwd" = "" ]; then
@@ -48,6 +45,11 @@ if [ "$rootpwd" = "" ]; then
 fi
 /usr/local/mysql/bin/mysqladmin -u root password $rootpwd
 echo "MariaDB root password has set to:$rootpwd"
+
+#启动服务
+service mysqld start
+
+cd /root
 
 echo "============================================================================="
 echo "Mariadb已安装完成，请运行其他安装脚本 Script Written by Junorz.com"
