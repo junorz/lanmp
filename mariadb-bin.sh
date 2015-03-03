@@ -10,19 +10,43 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
+cd /root
 
 #下载二进制安装包
 read -p "Is your system 32bit or 64bit?(Enter 32 or 64)" sysbit
 if [ "$sysbit" = "32" ]; then
 	yum -y install glibc
 	rpm -qa|grep glibc
-	
+	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
+	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
+		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
+	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
+		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
+	else
+		echo "Please enter Y or N.Try to run this script again."
+		exit 1
+	fi
 elif [ "$sysbit" = "64" ]; then
-	echo "64"
+	yum -y install glibc
+	rpm -qa|grep glibc
+	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
+	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
+		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
+	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
+		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
+	else
+		echo "Please enter Y or N.Try to run this script again."
+		exit 1
+	fi
 else
 	echo "Cannot detect your system's type.Please enter a legal value."
 	exit 1
 fi
+
+#解压到相应目录
+echo "Extracting Mariadb.tar.gz....."
+tar -zxf mariadb.tar.gz -C /usr/local
+mv /usr/local/mariadb-* /usr/local/mysql
 
 #创建运行Mariadb进程的用户
 groupadd mysql
@@ -45,6 +69,9 @@ chkconfig --add mysqld
 echo "/usr/local/mysql/lib" >> /etc/ld.so.conf
 ldconfig
 
+#启动服务
+service mysqld start
+
 #设置管理员密码
 read -p "Enter a password for root:" rootpwd
 if [ "$rootpwd" = "" ]; then
@@ -53,10 +80,6 @@ fi
 /usr/local/mysql/bin/mysqladmin -u root password $rootpwd
 echo "MariaDB root password has set to:$rootpwd"
 
-#启动服务
-service mysqld start
-
-cd /root
 
 echo "============================================================================="
 echo "Mariadb已安装完成，请运行其他安装脚本 Script Written by Junorz.com"
