@@ -45,7 +45,7 @@ chmod -R +x *.sh
 bash parts/preinstall.sh
 </code></pre>
 
-<h1>搭建Nginx+MariaDB+PHP环境</h1>
+<h4>搭建Nginx+MariaDB+PHP环境</h4>
 <p>因为PHP需要在编译时指定MariaDB相关文件位置，需要最后安装。</p>
 <p>Nginx/MariaDB安装顺序随意。</p>
 <p>1.安装<code>Nginx</code></p>
@@ -73,7 +73,7 @@ bash parts/mariadb.sh
 bash parts/php-nginx.sh
 </code></pre>
 
-<h1>搭建Apache+MariaDB+PHP环境</h1>
+<h4>搭建Apache+MariaDB+PHP环境</h4>
 <p>因为PHP需要在编译时指定Apache及MariaDB相关文件位置，需要最后安装。</p>
 <p>Apache/MariaDB安装顺序随意。</p>
 <p>1.安装<code>Apache</code></p>
