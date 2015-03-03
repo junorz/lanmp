@@ -93,7 +93,6 @@ tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
 
-cd /root
 
 echo "========================================================================="
 echo "PHP With Nginx已安装完成，请运行其他安装脚本 Script Written by Junorz.com"

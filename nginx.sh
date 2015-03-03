@@ -48,7 +48,6 @@ echo "/usr/bin/nginx" >> /etc/rc.d/rc.local
 #启动Nginx
 /usr/bin/nginx
 
-cd /root
 
 echo "========================================================================="
 echo "Nginx已安装完成，请运行其他安装脚本 Script Written by Junorz.com"

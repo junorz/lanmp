@@ -49,7 +49,6 @@ echo "MariaDB root password has set to:$rootpwd"
 #启动服务
 service mysqld start
 
-cd /root
 
 echo "============================================================================="
 echo "Mariadb已安装完成，请运行其他安装脚本 Script Written by Junorz.com"

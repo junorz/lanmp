@@ -40,7 +40,6 @@ cp /usr/local/apache/bin/apachectl /etc/init.d/httpd
 chkconfig --add httpd
 service httpd start
 
-cd /root
 
 echo "========================================================================="
 echo "Apache已安装完成，请运行其他安装脚本 Script Written by Junorz.com"

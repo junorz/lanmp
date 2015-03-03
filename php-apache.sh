@@ -84,9 +84,6 @@ rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
 #重启服务器
 service httpd restart
 
-cd /root
-
-
 echo "========================================================================="
 echo "PHP With Nginx已安装完成，请运行其他安装脚本 Script Written by Junorz.com"
 echo "访问http://您的网址/tz.php可以访问PHP探针"
