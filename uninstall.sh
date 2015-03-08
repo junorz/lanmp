@@ -26,21 +26,23 @@ echo "==========================================="
 
 read -p "Which one would you uninstall?" uninst
 if [ "$uninst" = 1 ]; then
-	echo "卸载Nginx"
+	echo "Uninstalling Nginx..."
 	nginx -s stop
 	rm -rf /usr/bin/nginx
 	rm -rf /usr/local/nginx
 	rm -rf /root/nginx*
 	sed -i "/nginx/d" /etc/rc.d/rc.local
+	echo "Nginx Uninstalled"
 elif [ "$uninst" = 2 ]; then
-	echo "卸载Apache"
+	echo "Uninstalling Apache..."
 	service httpd stop
 	chkconfig --del httpd
 	rm -rf /etc/init.d/httpd
 	rm -rf /usr/local/apache
 	rm -rf /root/httpd*
+	echo "Apache Uninstalled"
 elif [ "$uninst" = 3 ]; then
-	echo "卸载MariaDB"
+	echo "Uninstalling MariaDB..."
 	service mysqld stop
 	chkconfig --del mysqld
 	rm -rf /etc/init.d/mysqld
@@ -49,22 +51,26 @@ elif [ "$uninst" = 3 ]; then
 	rm -rf /root/mariadb*
 	sed -i "/mysql/d" /etc/ld.so.conf
 	ldconfig
+	echo "MariaDB Uninstalled"
 elif [ "$uninst" = 4 ]; then
-	echo "卸载PHP-with-Nginx"
+	echo "Uninstalling PHP-with-Nginx"
 	pkill php
 	sed -i "/php/d" /etc/rc.d/rc.local
+	rm -rf /usr/bin/php-fpm
 	rm -rf /usr/local/php
 	rm -rf /root/php*
 	rm -rf /usr/local/nginx/conf/nginx.conf
-	cp /usr/local/nginx/conf/nginx-backup.conf -rf /usr/local/nginx/conf/nginx.conf
+	cp /usr/local/nginx/conf/nginx-backup.conf -f /usr/local/nginx/conf/nginx.conf
+	echo "PHP-with-Nginx Uninstalled"
 elif [ "$uninst" = 5 ]; then
-	echo "卸载PHP-with-Apache"
+	echo "Uninstalling PHP-with-Apache"
 	sed -i "/<FilesMatch \\\.php\$>/N;/.*SetHandler application\/x-httpd-php/N;/<\/FilesMatch>/d" /usr/local/apache/conf/httpd.conf
 	sed -i "/modules\/libphp5.so/d" /usr/local/apache/conf/httpd.conf
 	rm -rf /usr/local/php
 	rm -rf /root/php*
+	echo "PHP-with-Apache Uninstalled"
 elif [ "$uninst" = 6 ]; then
-	echo "卸载LNMP"
+	echo "Uninstalling LNMP"
 	nginx -s stop
 	rm -rf /usr/bin/nginx
 	rm -rf /usr/local/nginx
@@ -80,6 +86,7 @@ elif [ "$uninst" = 6 ]; then
 	
 	pkill php
 	sed -i "/php/d" /etc/rc.d/rc.local
+	rm -rf /usr/bin/php-fpm
 	rm -rf /usr/local/php
 	rm -rf /root/php*
 	
@@ -87,8 +94,9 @@ elif [ "$uninst" = 6 ]; then
 	sed -i "/apr/d" /etc/ld.so.conf
 	sed -i "/mysql/d" /etc/ld.so.conf
 	ldconfig
+	echo "LNMP Uninstalled"
 elif [ "$uninst" = 7 ]; then
-	echo "卸载LAMP"
+	echo "Uninstalling LAMP"
 	service httpd stop
 	chkconfig --del httpd
 	rm -rf /etc/init.d/httpd
@@ -109,6 +117,7 @@ elif [ "$uninst" = 7 ]; then
 	sed -i "/apr/d" /etc/ld.so.conf
 	sed -i "/mysql/d" /etc/ld.so.conf
 	ldconfig
+	echo "LAMP Uninstalled"
 else
 	echo "Please input 1-7.Try to run this script again."
 	exit 1
