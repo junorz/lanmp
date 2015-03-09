@@ -54,7 +54,6 @@ cd php*
 --with-xmlrpc \
 --enable-zip \
 --enable-soap \
---without-pear \
 --with-gettext
 make && make install
 
