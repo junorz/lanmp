@@ -23,6 +23,16 @@ if [ "$vernginx" = "" ]; then
 fi
 read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstall
 if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; then
+	echo "Trying downloading the Nginx..."
+	#尝试获取自定义的Nginx版本，若不成功，则退出
+	wget -O nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
+	if [ $? -ne 0 ]; then
+		echo "Nginx $vernginx cannot be downloaded.Please check if you have enter a correct version."
+		exit 1
+	else
+		echo "Nginx download succeed.Will continue to install the Pre-install Environment."
+	fi
+	
 	#创建运行Nginx进程的用户
 	groupadd www
 	useradd -s /sbin/nologin -g www www
@@ -30,8 +40,8 @@ if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; th
 	#避免系统找不到PCRE等库
 	export LD_LIBRARY_PATH=/usr/local/lib
 	
+	#开始编译
 	cd /root
-	wget -O nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
 	tar -zxf nginx.tar.gz
 	cd /root/nginx*
 	./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-ipv6
