@@ -22,9 +22,9 @@ if [ "$sysbit" = "32" ]; then
 	rpm -qa|grep glibc
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		echo "Will install MariaDB-32bit-withGlibc2.14"
+		echo "MariaDB-32bit-withGlibc2.14 will be installed."
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		echo "Will install MariaDB-32bit-withoutGlibc2.14"
+		echo "MariaDB-32bit-withoutGlibc2.14 will be installed."
 	else
 		echo "Please enter Y or N.Try to run this script again."
 		exit 1
@@ -34,9 +34,9 @@ elif [ "$sysbit" = "64" ]; then
 	rpm -qa|grep glibc
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		echo "Will install MariaDB-64bit-withGlibc2.14"
+		echo "MariaDB-64bit-withGlibc2.14 will be installed."
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		echo "Will install MariaDB-64bit-withGlibc2.14"
+		echo "MariaDB-64bit-withGlibc2.14 will be installed."
 	else
 		echo "Please enter Y or N.Try to run this script again."
 		exit 1
