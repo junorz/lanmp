@@ -288,6 +288,20 @@ tar -zxf /usr/local/apache/htdocs/phpmyadmin.tar.gz -C /usr/local/apache/htdocs/
 mv /usr/local/apache/htdocs/phpMyAdmin-* /usr/local/apache/htdocs/phpmyadmin
 rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
 
+#询问是否删除源文件
+read -p "Do you want to delete all the source files downloaded in /root?" delsource
+if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; then
+	echo "Deleting,please wait..."
+	rm -rf /root/libmcrypt*
+	rm -rf /root/mcrypt*
+	rm -rf /root/mhash*
+	rm -rf /root/bison*
+	rm -rf /root/pcre*
+	rm -rf /root/nginx*
+	rm -rf /root/mariadb*
+	rm -rf /root/php*
+	rm -rf /root/apr*
+fi
 
 
 echo "========================================================================="

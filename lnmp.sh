@@ -300,6 +300,19 @@ tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
 
+#询问是否删除源文件
+read -p "Do you want to delete all the source files downloaded in /root?" delsource
+if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; then
+	echo "Deleting,please wait..."
+	rm -rf /root/libmcrypt*
+	rm -rf /root/mcrypt*
+	rm -rf /root/mhash*
+	rm -rf /root/bison*
+	rm -rf /root/pcre*
+	rm -rf /root/nginx*
+	rm -rf /root/mariadb*
+	rm -rf /root/php*
+fi
 
 echo "========================================================================="
 echo "Centos + Nginx + MariaDB + PHP 环境已安装完成，您可以用以下命令进行管理"
