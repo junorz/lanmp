@@ -54,7 +54,6 @@ cd php*
 --with-xmlrpc \
 --enable-zip \
 --enable-soap \
---without-pear \
 --with-gettext
 make && make install
 
@@ -64,13 +63,13 @@ cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
 cp sapi/fpm/php-fpm /usr/local/bin
 
 #软链接以便命令行直接调用
-ln -s /usr/local/bin/php-fpm /usr/bin/php
+ln -s /usr/local/bin/php-fpm /usr/bin/php-fpm
 
 #启动php-fpm请直接在命令行输入php
 #停止php-fpm请直接在命令行输入pkill php
 
 #加入开机自启动，如果不需要自在/etc/rc.d/rc.local文件里删除相应命令
-echo "/usr/bin/php" >> /etc/rc.d/rc.local
+echo "/usr/bin/php-fpm" >> /etc/rc.d/rc.local
 
 #配置php.ini文件
 sed -i "s/^.*cgi.fix_pathinfo=.*/cgi.fix_pathinfo=0/g" /usr/local/php/etc/php.ini
@@ -86,7 +85,7 @@ wget -O /usr/local/nginx/conf/nginx.conf http://source.ocha.so/nginx.conf
 /usr/bin/nginx -s reload
 
 #启动php-fpm进程
-/usr/bin/php
+/usr/bin/php-fpm
 
 #下载探针
 wget -O /usr/local/nginx/html/tz.zip http://www.yahei.net/tz/tz.zip

@@ -247,7 +247,6 @@ cd php*
 --with-xmlrpc \
 --enable-zip \
 --enable-soap \
---without-pear \
 --with-gettext
 make && make install
 
@@ -257,13 +256,13 @@ cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
 cp sapi/fpm/php-fpm /usr/local/bin
 
 #软链接以便命令行直接调用
-ln -s /usr/local/bin/php-fpm /usr/bin/php
+ln -s /usr/local/bin/php-fpm /usr/bin/php-fpm
 
-#启动php-fpm请直接在命令行输入php
-#停止php-fpm请直接在命令行输入pkill php
+#启动php-fpm请直接在命令行输入php-fpm
+#停止php-fpm请直接在命令行输入pkill php-fpm
 
 #加入开机自启动，如果不需要自在/etc/rc.d/rc.local文件里删除相应命令
-echo "/usr/bin/php" >> /etc/rc.d/rc.local
+echo "/usr/bin/php-fpm" >> /etc/rc.d/rc.local
 
 #配置php.ini文件
 sed -i "s/^.*cgi.fix_pathinfo=.*/cgi.fix_pathinfo=0/g" /usr/local/php/etc/php.ini
@@ -279,7 +278,7 @@ wget -O /usr/local/nginx/conf/nginx.conf http://source.ocha.so/nginx.conf
 /usr/bin/nginx
 
 #启动php-fpm进程
-/usr/bin/php
+/usr/bin/php-fpm
 
 #下载探针
 wget -O /usr/local/nginx/html/tz.zip http://www.yahei.net/tz/tz.zip
@@ -297,7 +296,7 @@ rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
 echo "========================================================================="
 echo "Centos + Nginx + MariaDB + PHP 环境已安装完成，您可以用以下命令进行管理"
 echo "Nginx:    启动：nginx|重载：nginx -s reload|停止：nginx -s stop"
-echo "PHP-FPM:  启动：php|停止：pkill php"
+echo "PHP-FPM:  启动：php-fpm|停止：pkill php-fpm"
 echo "MariaDB:  service mysqld {start|stop|restart}"
 echo "访问http://您的网址/tz.php可以访问PHP探针"
 echo "访问http://您的网址/phpmyadmin可以访问phpmyadmin"
