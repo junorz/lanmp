@@ -22,9 +22,9 @@ if [ "$sysbit" = "32" ]; then
 	rpm -qa|grep glibc
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		echo "Will install MariaDB-32bit-withGlibc2.14"
+		echo "MariaDB-32bit-withGlibc2.14 will be installed."
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		echo "Will install MariaDB-32bit-withoutGlibc2.14"
+		echo "MariaDB-32bit-withoutGlibc2.14 will be installed."
 	else
 		echo "Please enter Y or N.Try to run this script again."
 		exit 1
@@ -34,9 +34,9 @@ elif [ "$sysbit" = "64" ]; then
 	rpm -qa|grep glibc
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		echo "Will install MariaDB-64bit-withGlibc2.14"
+		echo "MariaDB-64bit-withGlibc2.14 will be installed."
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		echo "Will install MariaDB-64bit-withGlibc2.14"
+		echo "MariaDB-64bit-withGlibc2.14 will be installed."
 	else
 		echo "Please enter Y or N.Try to run this script again."
 		exit 1
@@ -66,7 +66,16 @@ read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstall
 if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; then
 	echo "================================"
 	echo "Nginx$vernginx will be installed"
+	echo "Trying downloading the Nginx..."
 	echo "================================"
+	#尝试获取自定义的Nginx版本，若不成功，则退出
+	wget -O nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
+	if [ $? -ne 0 ]; then
+		echo "Nginx $vernginx cannot be downloaded.Please check if you have enter a correct version."
+		exit 1
+	else
+		echo "Nginx download succeed.Will continue to install the Pre-install Environment."
+	fi
 else
 	echo "Installation interrupted.Try to run this script again."
 	exit 1
@@ -142,7 +151,6 @@ useradd -s /sbin/nologin -g www www
 export LD_LIBRARY_PATH=/usr/local/lib
 
 cd /root
-wget -O nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
 tar -zxf nginx.tar.gz
 cd /root/nginx*
 ./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-ipv6
