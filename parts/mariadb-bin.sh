@@ -18,6 +18,15 @@ fi
 
 cd /root
 
+#询问用户设置默认密码
+read -p "Enter a password for MariaDB root:" rootpwd
+if [ "$rootpwd" = "" ]; then
+	rootpwd="root"
+fi
+echo "=================================================="
+echo "MariaDB root password will be set to:$rootpwd"
+echo "=================================================="
+
 #下载二进制安装包
 read -p "Is your system 32bit or 64bit?(Enter 32 or 64)" sysbit
 if [ "$sysbit" = "32" ]; then
@@ -79,12 +88,7 @@ ldconfig
 service mysqld start
 
 #设置管理员密码
-read -p "Enter a password for root:" rootpwd
-if [ "$rootpwd" = "" ]; then
-	rootpwd="root"
-fi
 /usr/local/mysql/bin/mysqladmin -u root password $rootpwd
-echo "MariaDB root password has set to:$rootpwd"
 
 echo "==========================================="
 echo "脚本已运行完成 Script Written by Junorz.com"
