@@ -272,6 +272,7 @@ sed -i "s/.*DirectoryIndex index.html/  DirectoryIndex index.php index.html/g" /
 sed -i "s/;date.timezone =/date.timezone = Asia\/Shanghai/g" /usr/local/php/etc/php.ini
 sed -i "s/post_max_size =.*/post_max_size = 50M/g" /usr/local/php/etc/php.ini
 sed -i "s/upload_max_filesize =.*/upload_max_filesize = 50M/g" /usr/local/php/etc/php.ini
+sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/php/etc/php.ini
 
 #启动Apache
 service httpd start
