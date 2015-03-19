@@ -297,7 +297,6 @@ if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; th
 	rm -rf /root/mhash*
 	rm -rf /root/bison*
 	rm -rf /root/pcre*
-	rm -rf /root/nginx*
 	rm -rf /root/mariadb*
 	rm -rf /root/php*
 	rm -rf /root/httpd*
