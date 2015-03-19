@@ -52,7 +52,7 @@ if [ "$rootpwd" = "" ]; then
 	rootpwd="root"
 fi
 echo "=================================================="
-echo "MariaDB root password will be  set to:$rootpwd"
+echo "MariaDB root password will be set to:$rootpwd"
 echo "=================================================="
 
 #自定义Nginx版本
