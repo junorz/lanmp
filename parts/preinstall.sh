@@ -70,7 +70,7 @@ make && make install
 
 #安装CMake
 cd /root
-wget -O cmake.tar.gz http://sourceforge.net/projects/lanmp/files/cmake-3.2.0-rc2.tar.gz/download
+wget -O cmake.tar.gz http://sourceforge.net/projects/lanmp/files/cmake-3.2.1.tar.gz/download
 tar -zxf cmake.tar.gz
 cd /root/cmake*
 ./bootstrap
