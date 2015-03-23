@@ -137,11 +137,6 @@ cd /root/pcre*
 ./configure
 make && make install
 
-#更新系统库路径
-echo "/usr/local/apr/lib" >> /etc/ld.so.conf
-echo "/usr/local/apr-util/lib" >> /etc/ld.so.conf
-ldconfig
-
 #================================安装Nginx==================================
 #创建运行Nginx进程的用户
 groupadd www
