@@ -290,7 +290,7 @@ mv /usr/local/apache/htdocs/phpMyAdmin-* /usr/local/apache/htdocs/phpmyadmin
 rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
 
 #询问是否删除源文件
-read -p "Do you want to delete all the source files downloaded in /root?" delsource
+read -p "Do you want to delete all the source files downloaded in /root?[Y/N]" delsource
 if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; then
 	echo "Deleting,please wait..."
 	rm -rf /root/libmcrypt*
