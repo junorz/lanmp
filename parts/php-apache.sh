@@ -15,7 +15,7 @@ if [ $(id -u) != "0" ]; then
 fi
 
 #下载编译
-cd /root
+cd ~/.lanmp/resources
 wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.6.tar.gz/download
 tar -zxf php.tar.gz
 cd php*

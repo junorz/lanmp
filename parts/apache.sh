@@ -20,7 +20,7 @@ groupadd www
 useradd -s /sbin/nologin -g www www
 
 #下载编译
-cd /root
+cd ~/.lanmp/resources
 wget -O httpd.tar.gz  http://sourceforge.net/projects/lanmp/files/httpd-2.4.12.tar.gz/download
 tar -zxf httpd.tar.gz
 cd httpd*

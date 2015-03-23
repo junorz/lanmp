@@ -77,42 +77,42 @@ ldconfig
 
 #其他无法通过Yum安装的工具
 #下载Libmcrypt,mhash,mcrypt
-cd /root
+cd ~/.lanmp/resources
 wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
 wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
 wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
 tar -zxf libmcrypt.tar.gz
 tar -zxf mcrypt.tar.gz
 tar -zxf mhash.tar.gz
-cd /root/libmcrypt*
+cd ~/.lanmp/resources/libmcrypt*
 ./configure
 make && make install
-cd /root/mhash*
+cd ~/.lanmp/resources/mhash*
 ./configure
 make && make install
-cd /root/mcrypt*
+cd ~/.lanmp/resources/mcrypt*
 ./configure
 make && make install
 
 #安装bison
 yum -y remove bison*
-cd /root
+cd ~/.lanmp/resources
 wget -O bison.tar.gz http://sourceforge.net/projects/lanmp/files/bison-3.0.4.tar.gz/download
 tar -zxf bison.tar.gz
-cd /root/bison*
+cd ~/.lanmp/resources/bison*
 ./configure
 make && make install
 
 #安装pcre
-cd /root
+cd ~/.lanmp/resources/
 wget -O pcre.tar.gz http://sourceforge.net/projects/lanmp/files/pcre-8.36.tar.gz/download
 tar -zxf pcre.tar.gz
-cd /root/pcre*
+cd ~/.lanmp/resources/pcre*
 ./configure
 make && make install
 
 #安装APR
-cd /root
+cd ~/.lanmp/resources
 wget -O apr.tar.gz http://sourceforge.net/projects/lanmp/files/apr-1.5.1.tar.gz/download
 tar -zxf apr.tar.gz
 cd apr*
@@ -120,7 +120,7 @@ cd apr*
 make && make install
 
 #安装APR-util
-cd /root
+cd ~/.lanmp/resources
 wget -O apr-util.tar.gz http://sourceforge.net/projects/lanmp/files/apr-util-1.5.4.tar.gz/download
 tar -zxf apr-util.tar.gz
 cd apr-util*
@@ -138,7 +138,7 @@ groupadd www
 useradd -s /sbin/nologin -g www www
 
 #下载编译
-cd /root
+cd ~/.lanmp/resources
 wget -O httpd.tar.gz  http://sourceforge.net/projects/lanmp/files/httpd-2.4.12.tar.gz/download
 tar -zxf httpd.tar.gz
 cd httpd*
@@ -165,19 +165,19 @@ cp /usr/local/apache/bin/apachectl /etc/init.d/httpd
 chkconfig --add httpd
 
 #================================安装MariaDB二进制版本==================================
-cd /root
+cd ~/.lanmp/resources
 #下载相应版本
 if [ "$sysbit" = "32" ]; then
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
 	fi
 elif [ "$sysbit" = "64" ]; then
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
 	fi
 fi
 
@@ -215,7 +215,7 @@ service mysqld start
 
 #================================安装PHP==================================
 #下载编译
-cd /root
+cd ~/.lanmp/resources
 wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.6.tar.gz/download
 tar -zxf php.tar.gz
 cd php*
@@ -290,18 +290,18 @@ mv /usr/local/apache/htdocs/phpMyAdmin-* /usr/local/apache/htdocs/phpmyadmin
 rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
 
 #询问是否删除源文件
-read -p "Do you want to delete all the source files downloaded in /root?[Y/N]" delsource
+read -p "Do you want to delete all the source files downloaded in ~/.lanmp/resources?[Y/N]" delsource
 if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; then
 	echo "Deleting,please wait..."
-	rm -rf /root/libmcrypt*
-	rm -rf /root/mcrypt*
-	rm -rf /root/mhash*
-	rm -rf /root/bison*
-	rm -rf /root/pcre*
-	rm -rf /root/mariadb*
-	rm -rf /root/php*
-	rm -rf /root/httpd*
-	rm -rf /root/apr*
+	rm -rf ~/.lanmp/resources/libmcrypt*
+	rm -rf ~/.lanmp/resources/mcrypt*
+	rm -rf ~/.lanmp/resources/mhash*
+	rm -rf ~/.lanmp/resources/bison*
+	rm -rf ~/.lanmp/resources/pcre*
+	rm -rf ~/.lanmp/resources/mariadb*
+	rm -rf ~/.lanmp/resources/php*
+	rm -rf ~/.lanmp/resources/httpd*
+	rm -rf ~/.lanmp/resources/apr*
 fi
 
 

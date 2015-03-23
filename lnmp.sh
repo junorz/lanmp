@@ -69,7 +69,7 @@ if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; th
 	echo "Trying downloading the Nginx..."
 	echo "================================"
 	#尝试获取自定义的Nginx版本，若不成功，则退出
-	wget -O /root/nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
+	wget -O ~/.lanmp/resources/nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
 	if [ $? -ne 0 ]; then
 		echo "Nginx $vernginx cannot be downloaded.Please check if you have enter a correct version."
 		exit 1
@@ -103,37 +103,37 @@ ldconfig
 
 #其他无法通过Yum安装的工具
 #下载Libmcrypt,mhash,mcrypt
-cd /root
+cd ~/.lanmp/resources
 wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
 wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
 wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
 tar -zxf libmcrypt.tar.gz
 tar -zxf mcrypt.tar.gz
 tar -zxf mhash.tar.gz
-cd /root/libmcrypt*
+cd ~/.lanmp/resources/libmcrypt*
 ./configure
 make && make install
-cd /root/mhash*
+cd ~/.lanmp/resources/mhash*
 ./configure
 make && make install
-cd /root/mcrypt*
+cd ~/.lanmp/resources/mcrypt*
 ./configure
 make && make install
 
 #安装bison
 yum -y remove bison*
-cd /root
+cd ~/.lanmp/resources
 wget -O bison.tar.gz http://sourceforge.net/projects/lanmp/files/bison-3.0.4.tar.gz/download
 tar -zxf bison.tar.gz
-cd /root/bison*
+cd ~/.lanmp/resources/bison*
 ./configure
 make && make install
 
 #安装pcre
-cd /root
+cd ~/.lanmp/resources
 wget -O pcre.tar.gz http://sourceforge.net/projects/lanmp/files/pcre-8.36.tar.gz/download
 tar -zxf pcre.tar.gz
-cd /root/pcre*
+cd ~/.lanmp/resources/pcre*
 ./configure
 make && make install
 
@@ -145,9 +145,9 @@ useradd -s /sbin/nologin -g www www
 #避免系统找不到PCRE等库
 export LD_LIBRARY_PATH=/usr/local/lib
 
-cd /root
+cd ~/.lanmp/resources
 tar -zxf nginx.tar.gz
-cd /root/nginx*
+cd ~/.lanmp/resources/nginx*
 ./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-ipv6
 make && make install
 
@@ -162,19 +162,19 @@ ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
 echo "/usr/bin/nginx" >> /etc/rc.d/rc.local
 
 #================================安装MariaDB二进制版本==================================
-cd /root
+cd ~/.lanmp/resources
 #下载相应版本
 if [ "$sysbit" = "32" ]; then
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
 	fi
 elif [ "$sysbit" = "64" ]; then
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
 	fi
 fi
 
@@ -212,10 +212,10 @@ service mysqld start
 
 #================================安装PHP==================================
 #下载编译
-cd /root
+cd ~/.lanmp/resources
 wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.6.tar.gz/download
 tar -zxf php.tar.gz
-cd php*
+cd ~/.lanmp/resources/php*
 ./configure --prefix=/usr/local/php \
 --with-config-file-path=/usr/local/php/etc \
 --enable-fpm \
@@ -297,17 +297,17 @@ mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
 
 #询问是否删除源文件
-read -p "Do you want to delete all the source files downloaded in /root?[Y/N]" delsource
+read -p "Do you want to delete all the source files downloaded in ~/.lanmp/resources?[Y/N]" delsource
 if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; then
 	echo "Deleting,please wait..."
-	rm -rf /root/libmcrypt*
-	rm -rf /root/mcrypt*
-	rm -rf /root/mhash*
-	rm -rf /root/bison*
-	rm -rf /root/pcre*
-	rm -rf /root/nginx*
-	rm -rf /root/mariadb*
-	rm -rf /root/php*
+	rm -rf ~/.lanmp/resources/libmcrypt*
+	rm -rf ~/.lanmp/resources/mcrypt*
+	rm -rf ~/.lanmp/resources/mhash*
+	rm -rf ~/.lanmp/resources/bison*
+	rm -rf ~/.lanmp/resources/pcre*
+	rm -rf ~/.lanmp/resources/nginx*
+	rm -rf ~/.lanmp/resources/mariadb*
+	rm -rf ~/.lanmp/resources/php*
 fi
 
 echo "========================================================================="

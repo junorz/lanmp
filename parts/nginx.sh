@@ -25,7 +25,7 @@ read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstall
 if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; then
 	echo "Trying downloading the Nginx..."
 	#尝试获取自定义的Nginx版本，若不成功，则退出
-	wget -O /root/nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
+	wget -O ~/.lanmp/resources/nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
 	if [ $? -ne 0 ]; then
 		echo "Nginx $vernginx cannot be downloaded.Please check if you have enter a correct version."
 		exit 1
@@ -39,9 +39,9 @@ if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; th
 	export LD_LIBRARY_PATH=/usr/local/lib
 	
 	#开始编译
-	cd /root
+	cd ~/.lanmp/resources
 	tar -zxf nginx.tar.gz
-	cd /root/nginx*
+	cd ~/.lanmp/resources/nginx*
 	./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-ipv6
 	make && make install
 else

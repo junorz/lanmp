@@ -16,7 +16,7 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
-cd /root
+cd ~/.lanmp/resources
 
 #询问用户设置默认密码
 read -p "Enter a password for MariaDB root:" rootpwd
@@ -34,9 +34,9 @@ if [ "$sysbit" = "32" ]; then
 	rpm -qa|grep glibc
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
 	else
 		echo "Please enter Y or N.Try to run this script again."
 		exit 1
@@ -46,9 +46,9 @@ elif [ "$sysbit" = "64" ]; then
 	rpm -qa|grep glibc
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O /root/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
 	else
 		echo "Please enter Y or N.Try to run this script again."
 		exit 1
