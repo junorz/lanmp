@@ -7,6 +7,10 @@
 <li>使用的软件版本号为：<code>Nginx1.62~1.7.10</code>（可自定义）/<code>Apache2.4.12</code>/<code>MariaDB10.0.17</code>/<code>PHP5.6.6</code></li>
 </ol>
 
+<h1>如何更新到最新脚本</h1>
+<pre><code>cd /root/.lanmp
+git pull</code></pre>
+
 <h1>一键包安装使用教程</h1>
 <p>1.下载脚本文件</p>
 <pre><code>
