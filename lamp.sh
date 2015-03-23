@@ -272,6 +272,7 @@ sed -i "s/.*DirectoryIndex index.html/  DirectoryIndex index.php index.html/g" /
 sed -i "s/;date.timezone =/date.timezone = Asia\/Shanghai/g" /usr/local/php/etc/php.ini
 sed -i "s/post_max_size =.*/post_max_size = 50M/g" /usr/local/php/etc/php.ini
 sed -i "s/upload_max_filesize =.*/upload_max_filesize = 50M/g" /usr/local/php/etc/php.ini
+sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/php/etc/php.ini
 
 #启动Apache
 service httpd start
@@ -283,7 +284,7 @@ unzip tz.zip
 rm -rf /usr/local/apache/htdocs/tz.zip
 
 #下载phpMyAdmin
-wget -O /usr/local/apache/htdocs/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.3.11/phpMyAdmin-4.3.11-all-languages.tar.gz/download
+wget -O /usr/local/apache/htdocs/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.3.12/phpMyAdmin-4.3.12-all-languages.tar.gz/download
 tar -zxf /usr/local/apache/htdocs/phpmyadmin.tar.gz -C /usr/local/apache/htdocs/
 mv /usr/local/apache/htdocs/phpMyAdmin-* /usr/local/apache/htdocs/phpmyadmin
 rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
@@ -297,7 +298,6 @@ if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; th
 	rm -rf /root/mhash*
 	rm -rf /root/bison*
 	rm -rf /root/pcre*
-	rm -rf /root/nginx*
 	rm -rf /root/mariadb*
 	rm -rf /root/php*
 	rm -rf /root/httpd*

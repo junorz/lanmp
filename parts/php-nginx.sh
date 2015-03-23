@@ -76,6 +76,7 @@ sed -i "s/^.*cgi.fix_pathinfo=.*/cgi.fix_pathinfo=0/g" /usr/local/php/etc/php.in
 sed -i "s/;date.timezone =/date.timezone = Asia\/Shanghai/g" /usr/local/php/etc/php.ini
 sed -i "s/post_max_size =.*/post_max_size = 50M/g" /usr/local/php/etc/php.ini
 sed -i "s/upload_max_filesize =.*/upload_max_filesize = 50M/g" /usr/local/php/etc/php.ini
+sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/php/etc/php.ini
 
 #替换Nginx.conf文件以便支持PHP文件
 mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx-backup.conf
@@ -94,7 +95,7 @@ unzip tz.zip
 rm -rf /usr/local/nginx/html/tz.zip
 
 #下载phpMyAdmin
-wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.3.11/phpMyAdmin-4.3.11-all-languages.tar.gz/download
+wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.3.12/phpMyAdmin-4.3.12-all-languages.tar.gz/download
 tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz

@@ -1,5 +1,12 @@
 #!/bin/bash
-#Welcome http://www.junorz.com
+#====================================================================
+# Pre-install Environment Install Script
+#
+# Copyright (c) 2011-2015 Junorz.com All rights reserved.
+#
+# Intro: http://www.junorz.com/archives/374.html
+#
+#====================================================================
 
 # 检查是否为管理员
 if [ $(id -u) != "0" ]; then
@@ -63,7 +70,7 @@ make && make install
 
 #安装CMake
 cd /root
-wget -O cmake.tar.gz http://sourceforge.net/projects/lanmp/files/cmake-3.2.0-rc2.tar.gz/download
+wget -O cmake.tar.gz http://sourceforge.net/projects/lanmp/files/cmake-3.2.1.tar.gz/download
 tar -zxf cmake.tar.gz
 cd /root/cmake*
 ./bootstrap
@@ -89,6 +96,19 @@ make && make install
 echo "/usr/local/apr/lib" >> /etc/ld.so.conf
 echo "/usr/local/apr-util/lib" >> /etc/ld.so.conf
 ldconfig
+
+#询问是否删除源文件
+read -p "Do you want to delete all the source files downloaded in /root?" delsource
+if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; then
+	echo "Deleting,please wait..."
+	rm -rf /root/libmcrypt*
+	rm -rf /root/mcrypt*
+	rm -rf /root/mhash*
+	rm -rf /root/bison*
+	rm -rf /root/cmake*
+	rm -rf /root/pcre*
+	rm -rf /root/apr*
+fi
 
 echo "==========================================="
 echo "脚本已运行完成 Script Written by Junorz.com"
