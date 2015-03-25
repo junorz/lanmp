@@ -62,7 +62,7 @@ fi
 
 #解压到相应目录
 echo "Extracting Mariadb.tar.gz....."
-tar -zxf ~/.lanmp/mariadb.tar.gz -C /usr/local
+tar -zxf ~/.lanmp/resources/mariadb.tar.gz -C /usr/local
 mv /usr/local/mariadb-* /usr/local/mysql
 
 #创建运行Mariadb进程的用户
