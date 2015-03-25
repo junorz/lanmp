@@ -63,7 +63,7 @@ if [ "$vernginx" = "" ]; then
 	vernginx="1.6.2"
 fi
 read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstall
-if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; then
+if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ]; then
 	echo "================================"
 	echo "Nginx$vernginx will be installed"
 	echo "Trying downloading the Nginx..."
@@ -298,7 +298,7 @@ rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
 
 #询问是否删除源文件
 read -p "Do you want to delete all the source files downloaded in ~/.lanmp/resources?[Y/N]" delsource
-if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; then
+if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ]; then
 	echo "Deleting,please wait..."
 	rm -rf ~/.lanmp/resources/libmcrypt*
 	rm -rf ~/.lanmp/resources/mcrypt*
@@ -308,6 +308,8 @@ if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; th
 	rm -rf ~/.lanmp/resources/nginx*
 	rm -rf ~/.lanmp/resources/mariadb*
 	rm -rf ~/.lanmp/resources/php*
+else
+    echo "Installation finished without delete resource files."
 fi
 
 echo "========================================================================="

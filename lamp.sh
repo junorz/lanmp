@@ -291,7 +291,7 @@ rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
 
 #询问是否删除源文件
 read -p "Do you want to delete all the source files downloaded in ~/.lanmp/resources?[Y/N]" delsource
-if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; then
+if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ]; then
 	echo "Deleting,please wait..."
 	rm -rf ~/.lanmp/resources/libmcrypt*
 	rm -rf ~/.lanmp/resources/mcrypt*
@@ -302,6 +302,8 @@ if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; th
 	rm -rf ~/.lanmp/resources/php*
 	rm -rf ~/.lanmp/resources/httpd*
 	rm -rf ~/.lanmp/resources/apr*
+else
+    echo "Installation finished without delete resource files."
 fi
 
 
