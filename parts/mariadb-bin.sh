@@ -16,7 +16,9 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
-cd ~/.lanmp/resources
+#安装前删除resources文件夹下的源文件
+read -p "Mariadb resource files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
+rm -rf ~/.lanmp/resources/mariadb*
 
 #询问用户设置默认密码
 read -p "Enter a password for MariaDB root:" rootpwd
@@ -60,7 +62,7 @@ fi
 
 #解压到相应目录
 echo "Extracting Mariadb.tar.gz....."
-tar -zxf mariadb.tar.gz -C /usr/local
+tar -zxf ~/.lanmp/mariadb.tar.gz -C /usr/local
 mv /usr/local/mariadb-* /usr/local/mysql
 
 #创建运行Mariadb进程的用户
@@ -89,6 +91,15 @@ service mysqld start
 
 #设置管理员密码
 /usr/local/mysql/bin/mysqladmin -u root password $rootpwd
+
+#询问是否删除源文件
+read -p "Would you like to delete resource files downloaded in ~/.lanmp/resources?[Y/N]" afterdel
+if [ "$afterdel" = "Y" ] || [ "$afterdel" = "y" ]; then
+    rm -rf ~/.lanmp/resources/mariadb*
+    echo "Resources files deleted."
+else
+    echo "Installation finished without delete resource files."
+fi
 
 echo "==========================================="
 echo "脚本已运行完成 Script Written by Junorz.com"

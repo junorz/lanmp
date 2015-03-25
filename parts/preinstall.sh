@@ -14,6 +14,20 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
+#安装前删除resources文件夹下的源文件
+read -p "Files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
+rm -rf ~/.lanmp/resources/libmcrypt*
+rm -rf ~/.lanmp/resources/mcrypt*
+rm -rf ~/.lanmp/resources/mhash*
+rm -rf ~/.lanmp/resources/bison*
+rm -rf ~/.lanmp/resources/cmake*
+rm -rf ~/.lanmp/resources/pcre*
+rm -rf ~/.lanmp/resources/apr*
+rm -rf ~/.lanmp/resources/nginx*
+rm -rf ~/.lanmp/resources/httpd*
+rm -rf ~/.lanmp/resources/mariadb*
+rm -rf ~/.lanmp/resources/php*
+
 #通过Yum安装编译环境
 yum -y groupinstall "Development Tools"
 yum -y install wget unzip libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel curl curl-devel libtool libtool-ltdl-devel openssl-devel ncurses ncurses-devel libaio* cyrus-sasl-devel
@@ -99,7 +113,7 @@ ldconfig
 
 #询问是否删除源文件
 read -p "Do you want to delete all the source files downloaded in ~/.lanmp/resources?[Y/N]" delsource
-if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; then
+if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ]; then
 	echo "Deleting,please wait..."
 	rm -rf ~/.lanmp/resources/libmcrypt*
 	rm -rf ~/.lanmp/resources/mcrypt*
@@ -108,6 +122,8 @@ if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ] || [ "$delsource" = "" ]; th
 	rm -rf ~/.lanmp/resources/cmake*
 	rm -rf ~/.lanmp/resources/pcre*
 	rm -rf ~/.lanmp/resources/apr*
+else
+    echo "Installation finished without delete resource files."
 fi
 
 echo "==========================================="

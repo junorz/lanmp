@@ -14,6 +14,11 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
+#安装前删除resources文件夹下的源文件
+read -p "Nginx resource files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
+rm -rf ~/.lanmp/resources/nginx*
+
+
 #自定义Nginx版本
 #版本号参照http://nginx.org/en/download.html
 echo "The version of Nginx can be referenced to http://nginx.org/en/download.html"
@@ -22,7 +27,7 @@ if [ "$vernginx" = "" ]; then
 	vernginx="1.6.2"
 fi
 read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstall
-if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ] || [ "$ifinstall" = "" ]; then
+if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ]; then
 	echo "Trying downloading the Nginx..."
 	#尝试获取自定义的Nginx版本，若不成功，则退出
 	wget -O ~/.lanmp/resources/nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
@@ -61,6 +66,15 @@ echo "/usr/bin/nginx" >> /etc/rc.d/rc.local
 
 #启动Nginx
 /usr/bin/nginx
+
+#询问是否删除源文件
+read -p "Would you like to delete resource files downloaded in ~/.lanmp/resources?[Y/N]" afterdel
+if [ "$afterdel" = "Y" ] || [ "$afterdel" = "y" ]; then
+    rm -rf ~/.lanmp/resources/nginx*
+    echo "Resources files deleted."
+else
+    echo "Installation finished without delete resource files."
+fi
 
 echo "==========================================="
 echo "脚本已运行完成 Script Written by Junorz.com"

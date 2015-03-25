@@ -15,6 +15,11 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
+#安装前删除resources文件夹下的源文件
+read -p "Apache resource files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
+rm -rf ~/.lanmp/resources/httpd*
+
+
 #创建运行Apache的用户
 groupadd www
 useradd -s /sbin/nologin -g www www
@@ -47,6 +52,14 @@ cp /usr/local/apache/bin/apachectl /etc/init.d/httpd
 chkconfig --add httpd
 service httpd start
 
+#询问是否删除源文件
+read -p "Would you like to delete resource files downloaded in ~/.lanmp/resources?[Y/N]" afterdel
+if [ "$afterdel" = "Y" ] || [ "$afterdel" = "y" ]; then
+    rm -rf ~/.lanmp/resources/httpd*
+    echo "Resources files deleted."
+else
+    echo "Installation finished without delete resource files."
+fi
 
 echo "==========================================="
 echo "脚本已运行完成 Script Written by Junorz.com"

@@ -15,6 +15,10 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
+#安装前删除resources文件夹下的源文件
+read -p "PHP resource files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
+rm -rf ~/.lanmp/resources/php*
+
 #下载编译
 cd ~/.lanmp/resources
 wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.6.tar.gz/download
@@ -99,6 +103,15 @@ wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/
 tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
+
+#询问是否删除源文件
+read -p "Would you like to delete resource files downloaded in ~/.lanmp/resources?[Y/N]" afterdel
+if [ "$afterdel" = "Y" ] || [ "$afterdel" = "y" ]; then
+    rm -rf ~/.lanmp/resources/php*
+    echo "Resources files deleted."
+else
+    echo "Installation finished without delete resource files."
+fi
 
 
 echo "================================================"
