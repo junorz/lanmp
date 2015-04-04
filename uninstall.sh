@@ -57,6 +57,7 @@ elif [ "$uninst" = 4 ]; then
 	pkill php
 	sed -i "/php/d" /etc/rc.d/rc.local
 	rm -rf /usr/bin/php-fpm
+    rm -rf /usr/local/bin/php-fpm
 	rm -rf /usr/local/php
 	rm -rf ~/.lanmp/resources/php*
 	rm -rf /usr/local/nginx/conf/nginx.conf
@@ -87,6 +88,7 @@ elif [ "$uninst" = 6 ]; then
 	pkill php
 	sed -i "/php/d" /etc/rc.d/rc.local
 	rm -rf /usr/bin/php-fpm
+    rm -rf /usr/local/bin/php-fpm
 	rm -rf /usr/local/php
 	rm -rf ~/.lanmp/resources/php*
 	
