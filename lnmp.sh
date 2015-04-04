@@ -120,15 +120,6 @@ cd ~/.lanmp/resources/mcrypt*
 ./configure
 make && make install
 
-#安装bison
-yum -y remove bison*
-cd ~/.lanmp/resources
-wget -O bison.tar.gz http://sourceforge.net/projects/lanmp/files/bison-3.0.4.tar.gz/download
-tar -zxf bison.tar.gz
-cd ~/.lanmp/resources/bison*
-./configure
-make && make install
-
 #安装pcre
 cd ~/.lanmp/resources
 wget -O pcre.tar.gz http://sourceforge.net/projects/lanmp/files/pcre-8.36.tar.gz/download
@@ -303,7 +294,6 @@ if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ]; then
 	rm -rf ~/.lanmp/resources/libmcrypt*
 	rm -rf ~/.lanmp/resources/mcrypt*
 	rm -rf ~/.lanmp/resources/mhash*
-	rm -rf ~/.lanmp/resources/bison*
 	rm -rf ~/.lanmp/resources/pcre*
 	rm -rf ~/.lanmp/resources/nginx*
 	rm -rf ~/.lanmp/resources/mariadb*
