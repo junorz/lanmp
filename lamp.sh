@@ -36,7 +36,7 @@ elif [ "$sysbit" = "64" ]; then
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
 		echo "MariaDB-64bit-withGlibc2.14 will be installed."
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		echo "MariaDB-64bit-withGlibc2.14 will be installed."
+		echo "MariaDB-64bit-withoutGlibc2.14 will be installed."
 	else
 		echo "Please enter Y or N.Try to run this script again."
 		exit 1
