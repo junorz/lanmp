@@ -14,6 +14,19 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
+#移除resources文件夹下的源文件
+rm -rf ~/.lanmp/resources/libmcrypt*
+rm -rf ~/.lanmp/resources/mcrypt*
+rm -rf ~/.lanmp/resources/mhash*
+rm -rf ~/.lanmp/resources/bison*
+rm -rf ~/.lanmp/resources/cmake*
+rm -rf ~/.lanmp/resources/pcre*
+rm -rf ~/.lanmp/resources/apr*
+rm -rf ~/.lanmp/resources/nginx*
+rm -rf ~/.lanmp/resources/httpd*
+rm -rf ~/.lanmp/resources/mariadb*
+rm -rf ~/.lanmp/resources/php*
+
 #================================读取用户输入==================================
 #判断需要安装的MariaDB版本
 read -p "Is your system 32bit or 64bit?(Enter 32 or 64)" sysbit
