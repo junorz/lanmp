@@ -21,7 +21,7 @@ rm -rf ~/.lanmp/resources/php*
 
 #下载编译
 cd ~/.lanmp/resources
-wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.6.tar.gz/download
+wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.7.tar.gz/download
 tar -zxf php.tar.gz
 cd php*
 ./configure --prefix=/usr/local/php \
