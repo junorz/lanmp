@@ -54,14 +54,14 @@ elif [ "$uninst" = 3 ]; then
 	echo "MariaDB Uninstalled"
 elif [ "$uninst" = 4 ]; then
 	echo "Uninstalling PHP-with-Nginx"
-	pkill php
+	pkill php-fpm
 	sed -i "/php/d" /etc/rc.d/rc.local
 	rm -rf /usr/bin/php-fpm
     rm -rf /usr/local/bin/php-fpm
 	rm -rf /usr/local/php
 	rm -rf ~/.lanmp/resources/php*
 	rm -rf /usr/local/nginx/conf/nginx.conf
-	cp /usr/local/nginx/conf/nginx-backup.conf -f /usr/local/nginx/conf/nginx.conf
+	mv /usr/local/nginx/conf/nginx-backup.conf /usr/local/nginx/conf/nginx.conf
 	echo "PHP-with-Nginx Uninstalled"
 elif [ "$uninst" = 5 ]; then
 	echo "Uninstalling PHP-with-Apache"
@@ -85,7 +85,7 @@ elif [ "$uninst" = 6 ]; then
 	rm -rf /etc/my.cnf
 	rm -rf ~/.lanmp/resources/mariadb*
 	
-	pkill php
+	pkill php-fpm
 	sed -i "/php/d" /etc/rc.d/rc.local
 	rm -rf /usr/bin/php-fpm
     rm -rf /usr/local/bin/php-fpm
