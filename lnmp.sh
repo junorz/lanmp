@@ -26,6 +26,19 @@ rm -rf ~/.lanmp/resources/nginx*
 rm -rf ~/.lanmp/resources/httpd*
 rm -rf ~/.lanmp/resources/mariadb*
 rm -rf ~/.lanmp/resources/php*
+rm -rf ~/.lanmp/resources/nginx.conf
+
+#================================准备安装工作==================================
+#
+#尝试下载nginx配置文件
+wget -O ~/.lanmp/resources/nginx.conf http://source.ocha.so/nginx.conf
+if [ $? -ne 0 ]; then
+	echo "The configure file of nginx cannot be downloaded. Please check if http://source.ocha.so/ can be accessed or not."
+	exit 1
+else
+	echo "Installaion will begin..."
+fi
+
 
 #================================读取用户输入==================================
 #判断需要安装的MariaDB版本
@@ -280,7 +293,7 @@ sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/php/etc
 
 #替换Nginx.conf文件以便支持PHP文件
 mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx-backup.conf
-wget -O /usr/local/nginx/conf/nginx.conf http://source.ocha.so/nginx.conf
+cp ~/.lanmp/resources/nginx.conf /usr/local/nginx/conf/nginx.conf
 
 #启动nginx
 /usr/bin/nginx
@@ -311,6 +324,7 @@ if [ "$delsource" = "Y" ] || [ "$delsource" = "y" ]; then
 	rm -rf ~/.lanmp/resources/nginx*
 	rm -rf ~/.lanmp/resources/mariadb*
 	rm -rf ~/.lanmp/resources/php*
+    rm -rf ~/.lanmp/resources/nginx.conf
 else
     echo "Installation finished without delete resource files."
 fi

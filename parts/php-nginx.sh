@@ -18,6 +18,16 @@ fi
 #安装前删除resources文件夹下的源文件
 read -p "PHP resource files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
 rm -rf ~/.lanmp/resources/php*
+rm -rf ~/.lanmp/resources/nginx.conf
+
+#尝试下载nginx配置文件
+wget -O ~/.lanmp/resources/nginx.conf http://source.ocha.so/nginx.conf
+if [ $? -ne 0 ]; then
+	echo "The configure file of nginx cannot be downloaded. Please check if http://source.ocha.so/ can be accessed or not."
+	exit 1
+else
+	echo "Installaion will begin..."
+fi
 
 #下载编译
 cd ~/.lanmp/resources
@@ -84,7 +94,7 @@ sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/php/etc
 
 #替换Nginx.conf文件以便支持PHP文件
 mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx-backup.conf
-wget -O /usr/local/nginx/conf/nginx.conf http://source.ocha.so/nginx.conf
+cp ~/.lanmp/resources/nginx.conf /usr/local/nginx/conf/nginx.conf
 
 #重启nginx
 /usr/bin/nginx -s reload
@@ -108,6 +118,7 @@ rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
 read -p "Would you like to delete resource files downloaded in ~/.lanmp/resources?[Y/N]" afterdel
 if [ "$afterdel" = "Y" ] || [ "$afterdel" = "y" ]; then
     rm -rf ~/.lanmp/resources/php*
+    rm -rf ~/.lanmp/resources/nginx.conf
     echo "Resources files deleted."
 else
     echo "Installation finished without delete resource files."
