@@ -14,7 +14,7 @@ git pull</code></pre>
 <h1>一键包安装使用教程</h1>
 <p>1.下载脚本文件</p>
 <pre><code>
-yum -y install git
+yum -y install git wget
 git clone https://github.com/junorz/lanmp.git ~/.lanmp
 chmod -R +x ~/.lanmp
 </code></pre>
