@@ -3,7 +3,7 @@
 # Centos + Apache + MariaDB + PHP Auto Install Script
 #
 # Copyright (c) 2011-2015 Junorz.com All rights reserved.
-# 
+#
 # Intro: http://www.junorz.com/archives/374.html
 #
 #====================================================================
@@ -139,7 +139,7 @@ ldconfig
 #================================安装Apache==================================
 #创建运行Apache的用户
 groupadd www
-useradd -s /sbin/nologin -g www www
+useradd -M -s /sbin/nologin -g www www
 
 #下载编译
 cd ~/.lanmp/resources

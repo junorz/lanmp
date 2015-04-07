@@ -3,7 +3,7 @@
 # Centos + Nginx + MariaDB + PHP Auto Install Script
 #
 # Copyright (c) 2011-2015 Junorz.com All rights reserved.
-# 
+#
 # Intro: http://www.junorz.com/archives/374.html
 #
 #====================================================================
@@ -157,7 +157,7 @@ make && make install
 #================================安装Nginx==================================
 #创建运行Nginx进程的用户
 groupadd www
-useradd -s /sbin/nologin -g www www
+useradd -M -s /sbin/nologin -g www www
 
 #避免系统找不到PCRE等库
 export LD_LIBRARY_PATH=/usr/local/lib

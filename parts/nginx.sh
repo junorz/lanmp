@@ -3,7 +3,7 @@
 # Apache Auto Install Script
 #
 # Copyright (c) 2011-2015 Junorz.com All rights reserved.
-# 
+#
 # Intro: http://www.junorz.com/archives/374.html
 #
 #====================================================================
@@ -35,14 +35,14 @@ if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ]; then
 		echo "Nginx $vernginx cannot be downloaded.Please check if you have enter a correct version."
 		exit 1
 	fi
-	
+
 	#创建运行Nginx进程的用户
 	groupadd www
-	useradd -s /sbin/nologin -g www www
+	useradd -M -s /sbin/nologin -g www www
 
 	#避免系统找不到PCRE等库
 	export LD_LIBRARY_PATH=/usr/local/lib
-	
+
 	#开始编译
 	cd ~/.lanmp/resources
 	tar -zxf nginx.tar.gz
