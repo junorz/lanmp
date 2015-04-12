@@ -308,7 +308,7 @@ unzip tz.zip
 rm -rf /usr/local/nginx/html/tz.zip
 
 #下载phpMyAdmin
-wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.3.12/phpMyAdmin-4.3.12-all-languages.tar.gz/download
+wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.4.1.1/phpMyAdmin-4.4.1.1-all-languages.tar.gz/download
 tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
