@@ -230,7 +230,7 @@ service mysqld start
 #================================安装PHP==================================
 #下载编译
 cd ~/.lanmp/resources
-wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.7.tar.gz/download
+wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.8.tar.gz/download
 tar -zxf php.tar.gz
 cd ~/.lanmp/resources/php*
 ./configure --prefix=/usr/local/php \
@@ -308,7 +308,7 @@ unzip tz.zip
 rm -rf /usr/local/nginx/html/tz.zip
 
 #下载phpMyAdmin
-wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.4.1.1/phpMyAdmin-4.4.1.1-all-languages.tar.gz/download
+wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.4.2/phpMyAdmin-4.4.2-all-languages.tar.gz/download
 tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
