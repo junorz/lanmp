@@ -4,7 +4,6 @@
 <li>已在<code>Centos6</code>/<code>Centos7</code>的32和64位系统下测试完成。</li>
 <li>目前可以布署的组合有<code>Nginx</code>+<code>MariaDB</code>+<code>PHP</code>或<code>Apache</code>+<code>MariaDB</code>+<code>PHP</code></li>
 <li>分步安装可以避免一键包中途产生错误需要重头再来的问题。</li>
-<li>使用的软件版本号为：<code>Nginx1.62~1.7.10</code>（可自定义）/<code>Apache2.4.12</code>/<code>MariaDB10.0.17</code>/<code>PHP5.6.6</code></li>
 </ol>
 
 <h1>如何更新到最新脚本</h1>
@@ -51,8 +50,8 @@ bash ~/.lanmp/parts/preinstall.sh
 <pre><code>
 bash ~/.lanmp/parts/nginx.sh
 </code></pre>
-<p>运行后会询问您要安装的Nginx版本，请参照<a href=http://nginx.org/en/download.html>Nginx下载页面</a>输入版本号（如1.6.2）。</p>
-<p>如果直接回车则安装1.6.2版本。</p>
+<p>运行后会询问您要安装的Nginx版本，请参照<a href=http://nginx.org/en/download.html>Nginx下载页面</a>输入版本号（如1.6.3）。</p>
+<p>如果直接回车则安装最新稳定版本。</p>
 
 <p>2.安装<code>MariaDB</code></p>
 <p>MariaDB分为使用<code>二进制包</code>（推荐）和<code>源码编译</code>安装。小内存服务器慎用源代码安装，可能会因为内存不够编译失败。</p>
