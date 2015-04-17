@@ -139,9 +139,11 @@ tar -zxf mhash.tar.gz
 cd ~/.lanmp/resources/libmcrypt*
 ./configure
 make && make install
+ldconfig
 cd ~/.lanmp/resources/mhash*
 ./configure
 make && make install
+ldconfig
 cd ~/.lanmp/resources/mcrypt*
 ./configure
 make && make install
