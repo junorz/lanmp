@@ -31,9 +31,9 @@ rm -rf ~/.lanmp/resources/nginx.conf
 #================================准备安装工作==================================
 #
 #尝试下载nginx配置文件
-wget -O ~/.lanmp/resources/nginx.conf http://source.ocha.so/nginx.conf
+wget -O ~/.lanmp/resources/nginx.conf http://source.myclouds.org/nginx.conf
 if [ $? -ne 0 ]; then
-	echo "The configure file of nginx cannot be downloaded. Please check if http://source.ocha.so/ can be accessed or not."
+	echo "The configure file of nginx cannot be downloaded. Please check if http://source.myclouds.org/ can be accessed or not."
 	exit 1
 else
 	echo "Installaion will begin..."
@@ -111,7 +111,7 @@ fi
 
 #通过Yum安装编译环境
 yum -y groupinstall "Development Tools"
-yum -y install wget unzip libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel curl curl-devel libtool libtool-ltdl-devel openssl-devel ncurses ncurses-devel libaio-devel cyrus-sasl-devel
+yum -y install wget unzip libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel curl curl-devel libtool libtool-ltdl-devel openssl-devel ncurses ncurses-devel libaio-devel cyrus-sasl-devel jemalloc
 
 #删除预安装项
 yum -y remove mysql-server mysql mysql-libs

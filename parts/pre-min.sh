@@ -29,7 +29,7 @@ rm -rf ~/.lanmp/resources/mariadb*
 rm -rf ~/.lanmp/resources/php*
 
 #通过Yum安装编译环境
-yum -y install gcc gcc-c++ make wget unzip libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel curl curl-devel libtool libtool-ltdl-devel openssl-devel ncurses ncurses-devel libaio-devel cyrus-sasl-devel
+yum -y install gcc gcc-c++ make wget unzip libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel curl curl-devel libtool libtool-ltdl-devel openssl-devel ncurses ncurses-devel libaio-devel cyrus-sasl-devel jemalloc
 
 #删除预安装项
 yum -y remove mysql-server mysql mysql-libs

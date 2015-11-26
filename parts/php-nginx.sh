@@ -21,9 +21,9 @@ rm -rf ~/.lanmp/resources/php*
 rm -rf ~/.lanmp/resources/nginx.conf
 
 #尝试下载nginx配置文件
-wget -O ~/.lanmp/resources/nginx.conf http://source.ocha.so/nginx.conf
+wget -O ~/.lanmp/resources/nginx.conf http://source.myclouds.org/nginx.conf
 if [ $? -ne 0 ]; then
-	echo "The configure file of nginx cannot be downloaded. Please check if http://source.ocha.so/ can be accessed or not."
+	echo "The configure file of nginx cannot be downloaded. Please check if http://source.myclouds.org/ can be accessed or not."
 	exit 1
 else
 	echo "Installaion will begin..."
