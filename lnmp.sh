@@ -84,9 +84,9 @@ echo "=================================================="
 #自定义Nginx版本
 #版本号参照http://nginx.org/en/download.html
 echo "The version of Nginx can be referenced to http://nginx.org/en/download.html"
-read -p "Enter the version you want to install(1.6.3 by deafult):" vernginx
+read -p "Enter the version you want to install(1.8.0 by deafult):" vernginx
 if [ "$vernginx" = "" ]; then
-	vernginx="1.6.3"
+	vernginx="1.8.0"
 fi
 read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstall
 if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ]; then
@@ -150,7 +150,7 @@ make && make install
 
 #安装pcre
 cd ~/.lanmp/resources
-wget -O pcre.tar.gz http://sourceforge.net/projects/lanmp/files/pcre-8.36.tar.gz/download
+wget -O pcre.tar.gz http://sourceforge.net/projects/pcre/files/pcre/8.37/pcre-8.37.tar.gz/download
 tar -zxf pcre.tar.gz
 cd ~/.lanmp/resources/pcre*
 ./configure
@@ -185,15 +185,15 @@ cd ~/.lanmp/resources
 #下载相应版本
 if [ "$sysbit" = "32" ]; then
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-glibc_214-x86/mariadb-10.1.9-linux-glibc_214-i686.tar.gz
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-x86/mariadb-10.1.9-linux-i686.tar.gz
 	fi
 elif [ "$sysbit" = "64" ]; then
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-glibc_214-x86_64/mariadb-10.1.9-linux-glibc_214-x86_64.tar.gz
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-x86_64/mariadb-10.1.9-linux-x86_64.tar.gz
 	fi
 fi
 
@@ -232,7 +232,7 @@ service mysqld start
 #================================安装PHP==================================
 #下载编译
 cd ~/.lanmp/resources
-wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.8.tar.gz/download
+wget -O php.tar.gz http://php.net/get/php-5.6.15.tar.gz/from/this/mirror
 tar -zxf php.tar.gz
 cd ~/.lanmp/resources/php*
 ./configure --prefix=/usr/local/php \
@@ -310,7 +310,7 @@ unzip tz.zip
 rm -rf /usr/local/nginx/html/tz.zip
 
 #下载phpMyAdmin
-wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.4.2/phpMyAdmin-4.4.2-all-languages.tar.gz/download
+wget -O /usr/local/nginx/html/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.5.2/phpMyAdmin-4.5.2-all-languages.tar.gz
 tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz

@@ -31,7 +31,7 @@ fi
 
 #下载编译
 cd ~/.lanmp/resources
-wget -O php.tar.gz http://sourceforge.net/projects/lanmp/files/php-5.6.8.tar.gz/download
+wget -O php.tar.gz http://php.net/get/php-5.6.15.tar.gz/from/this/mirror
 tar -zxf php.tar.gz
 cd php*
 ./configure --prefix=/usr/local/php \
@@ -109,7 +109,7 @@ unzip tz.zip
 rm -rf /usr/local/nginx/html/tz.zip
 
 #下载phpMyAdmin
-wget -O /usr/local/nginx/html/phpmyadmin.tar.gz http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.4.2/phpMyAdmin-4.4.2-all-languages.tar.gz/download
+wget -O /usr/local/nginx/html/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.5.2/phpMyAdmin-4.5.2-all-languages.tar.gz
 tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz

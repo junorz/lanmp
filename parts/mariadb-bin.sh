@@ -3,7 +3,7 @@
 # MariaDB binary Installation Auto Install Script
 #
 # Copyright (c) 2011-2015 Junorz.com All rights reserved.
-# 
+#
 # Intro: http://www.junorz.com/archives/374.html
 #
 # 为了配合以往的习惯，以及官方文档，因此MariaDB安装在/usr/local/mysql
@@ -36,9 +36,9 @@ if [ "$sysbit" = "32" ]; then
 	rpm -qa|grep glibc
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-glibc_214-x86/mariadb-10.1.9-linux-glibc_214-i686.tar.gz
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-i686.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-x86/mariadb-10.1.9-linux-i686.tar.gz
 	else
 		echo "Please enter Y or N.Try to run this script again."
 		exit 1
@@ -48,9 +48,9 @@ elif [ "$sysbit" = "64" ]; then
 	rpm -qa|grep glibc
 	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
 	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-glibc_214-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-glibc_214-x86_64/mariadb-10.1.9-linux-glibc_214-x86_64.tar.gz
 	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17-linux-x86_64.tar.gz/download
+		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-x86_64/mariadb-10.1.9-linux-x86_64.tar.gz
 	else
 		echo "Please enter Y or N.Try to run this script again."
 		exit 1

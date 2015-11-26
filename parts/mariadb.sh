@@ -3,7 +3,7 @@
 # MariaDB Combining from source Auto Install Script
 #
 # Copyright (c) 2011-2015 Junorz.com All rights reserved.
-# 
+#
 # Intro: http://www.junorz.com/archives/374.html
 #
 # 为了配合以往的习惯，以及官方文档，因此MariaDB安装在/usr/local/mysql
@@ -36,7 +36,7 @@ useradd -r -g mysql mysql
 
 #下载编译
 cd ~/.lanmp/resources
-wget -O mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/mariadb-10.0.17.tar.gz/download
+wget -O mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/source/mariadb-10.1.9.tar.gz
 tar -zxf mariadb.tar.gz
 cd mariadb*
 cmake .

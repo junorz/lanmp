@@ -78,7 +78,7 @@ make && make install
 
 #安装pcre
 cd ~/.lanmp/resources
-wget -O pcre.tar.gz http://sourceforge.net/projects/lanmp/files/pcre-8.36.tar.gz/download
+wget -O pcre.tar.gz http://sourceforge.net/projects/pcre/files/pcre/8.37/pcre-8.37.tar.gz/download
 tar -zxf pcre.tar.gz
 cd ~/.lanmp/resources/pcre*
 ./configure

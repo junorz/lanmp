@@ -22,9 +22,9 @@ rm -rf ~/.lanmp/resources/nginx*
 #自定义Nginx版本
 #版本号参照http://nginx.org/en/download.html
 echo "The version of Nginx can be referenced to http://nginx.org/en/download.html"
-read -p "Enter the version you want to install(1.6.3 by deafult):" vernginx
+read -p "Enter the version you want to install(1.8.0 by deafult):" vernginx
 if [ "$vernginx" = "" ]; then
-	vernginx="1.6.3"
+	vernginx="1.8.0"
 fi
 read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstall
 if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ]; then
