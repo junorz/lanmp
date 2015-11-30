@@ -3,6 +3,7 @@
 <li>此脚本采用一键/分步安装的方式可以在采用Centos服务器的系统上快速布署WEB环境。</li>
 <li>已在<code>Centos6</code>/<code>Centos7</code>的32和64位系统下测试完成。</li>
 <li>目前可以布署的组合有<code>Nginx</code>+<code>MariaDB</code>+<code>PHP</code>或<code>Apache</code>+<code>MariaDB</code>+<code>PHP</code></li>
+<li>请不要把Nginx和Apahce一起安装！</li>
 <li>分步安装可以避免一键包中途产生错误需要重头再来的问题。</li>
 </ol>
 
@@ -39,8 +40,15 @@ chmod -R +x ~/.lanmp
 </code></pre>
 
 <p>2.安装编译环境</p>
+<li>如果你需要安装Apache，编译环境需要完整完装，请运行preinstall.sh文件。</li>
 <pre><code>
 bash ~/.lanmp/parts/preinstall.sh
+</code></pre>
+
+<li>如果你需要安装Nginx，则不需要安装诸如APR等库，可以运行pre-min.sh最小安装编译环境。</li>
+<li>但是，如果你需要编译安装MariaDB，因为需要用到CMake，请运行preinstall.sh文件。</li>
+<pre><code>
+bash ~/.lanmp/parts/pre-min.sh
 </code></pre>
 
 <h4>搭建Nginx+MariaDB+PHP环境</h4>
@@ -50,7 +58,7 @@ bash ~/.lanmp/parts/preinstall.sh
 <pre><code>
 bash ~/.lanmp/parts/nginx.sh
 </code></pre>
-<p>运行后会询问您要安装的Nginx版本，请参照<a href=http://nginx.org/en/download.html>Nginx下载页面</a>输入版本号（如1.6.3）。</p>
+<p>运行后会询问您要安装的Nginx版本，请参照<a href=http://nginx.org/en/download.html>Nginx下载页面</a>输入版本号（如1.8.0）。</p>
 <p>如果直接回车则安装最新稳定版本。</p>
 
 <p>2.安装<code>MariaDB</code></p>
