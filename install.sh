@@ -199,55 +199,45 @@ MariaDB_Version(){
 
 #开始安装过程
 #检查用户需要安装什么
-case $WhatInstall in
-    lnmp)
-      Nginx_Version()
-      MariaDB_Version()
-      Preinstall()
-      Install_Nginx()
-      Install_MariaDBin()
-      Install_PHPwithNginx()
-    ;;
-    lamp)
-      Nginx_Version()
-      MariaDB_Version()
-      Preinstall_Min()
-      Install_Apache()
-      Install_MariaDBin()
-      Install_PHPwithApache()
-    ;;
-    pre)
-      Preinstall()
-    ;;
-    premin)
-      Preinstall_Min()
-    ;;
-    nginx)
-      Nginx_Version()
-      Install_Nginx()
-    ;;
-    apache)
-      Install_Apache()
-    ;;
-    mariadb)
-      MariaDB_RootPassword()
-      Install_MairaDB()
-    ;;
-    mariadbin)
-      MariaDB_Version()
-      MariaDB_RootPassword()
-      Install_MariaDBin()
-    ;;
-    phpnginx)
-      Install_PHPwithNginx()
-    ;;
-    phpapache)
-      Install_PHPwithApache()
-    ;;
-    *)
+if [ "$WhatInstall" = "lnmp" ]; then
+      Nginx_Version
+      MariaDB_RootPassword
+      MariaDB_Version
+      Preinstall
+      Install_Nginx
+      Install_MariaDBin
+      Install_PHPwithNginx
+elif [ "$WhatInstall" = "lamp" ]; then
+      Nginx_Version
+      MariaDB_RootPassword
+      MariaDB_Version
+      Preinstall_Min
+      Install_Apache
+      Install_MariaDBin
+      Install_PHPwithApache
+elif [ "$WhatInstall" = "pre" ]; then
+      Preinstall
+elif [ "$WhatInstall" = "premin" ]; then
+      Preinstall_Min
+elif [ "$WhatInstall" = "nginx" ]; then
+      Nginx_Version
+      Install_Nginx
+elif [ "$WhatInstall" = "apache" ]; then
+      Install_Apache
+elif [ "$WhatInstall" = "mariadb" ]; then
+      MariaDB_RootPassword
+      Install_MairaDB
+elif [ "$WhatInstall" = "mariadbin" ]; then
+      MariaDB_Version
+      MariaDB_RootPassword
+      Install_MariaDBin
+elif [ "$WhatInstall" = "phpnginx" ]; then
+      Install_PHPwithNginx
+elif [ "$WhatInstall" = "phpapache" ]; then
+      Install_PHPwithApache
+else
       exit 1
-    ;;
-esac
+fi
 
 echo "========================================================================="
 echo "所有脚本已执行完毕！"
