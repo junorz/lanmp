@@ -11,7 +11,28 @@
 <pre><code>cd ~/.lanmp
 git pull</code></pre>
 
-<h1>一键包安装使用教程</h1>
+<h1>使用方法</h1>
+<p>只需要给install.sh文件传递参数即可。例如：</p>
+<pre><code>
+install.sh lnmp
+</code></pre>
+<p>这样会一键安装lnmp。</p>
+<p>可用的参数有：</p>
+<pre><code>
+lnmp          安装LNMP
+lamp          安装LAMP
+pre           安装编译环境（即：包含Bison,CMake,APR的编译环境，适合Apache和编译版本的Mariadb选用）
+premin        最小安装编译环境（即：不包含Bison,CMake,APR的编译环境，适合Nginx和二进制版本Mariadb选用）
+nginx         安装Nginx
+apache        安装Apache
+mariadb       编译安装Mariadb
+mariadbin     安装二进制版本的Mariadb
+phpnginx      在Nginx之上安装PHP
+phpapache     在Apache之上安装PHP
+</code></pre>
+<p>下面有一些更为具体的安装实例：</p>
+
+<h1>一键安装实例</h1>
 <p>1.下载脚本文件</p>
 <pre><code>
 yum -y install git wget
@@ -23,15 +44,15 @@ chmod -R +x ~/.lanmp
 <p>目前可以布署的组合有<code>Nginx</code>+<code>MariaDB</code>+<code>PHP</code>或<code>Apache</code>+<code>MariaDB</code>+<code>PHP</code></p>
 <p>安装<code>Nginx</code>+<code>MariaDB</code>+<code>PHP</code></p>
 <pre><code>
-bash ~/.lanmp/lnmp.sh
+bash ~/.lanmp/install.sh lnmp
 </code></pre>
 <p>安装<code>Apache</code>+<code>MariaDB</code>+<code>PHP</code></p>
 <pre><code>
-bash ~/.lanmp/lamp.sh
+bash ~/.lanmp/install.sh lamp
 </code></pre>
 <p>根据屏幕上的提示完成安装即可</p>
 
-<h1>以下为分步安装教程</h1>
+<h1>分步安装实列</h1>
 <p>1.下载脚本文件</p>
 <pre><code>
 yum -y install git
@@ -40,15 +61,15 @@ chmod -R +x ~/.lanmp
 </code></pre>
 
 <p>2.安装编译环境</p>
-<li>如果你需要安装Apache，编译环境需要完整完装，请运行preinstall.sh文件。</li>
+<li>如果你需要安装Apache，编译环境需要完整完装。</li>
 <pre><code>
-bash ~/.lanmp/parts/preinstall.sh
+bash ~/.lanmp/install.sh pre
 </code></pre>
 
-<li>如果你需要安装Nginx，则不需要安装诸如APR等库，可以运行pre-min.sh最小安装编译环境。</li>
-<li>但是，如果你需要编译安装MariaDB，因为需要用到CMake，请运行preinstall.sh文件。</li>
+<li>如果你需要安装Nginx，则不需要安装诸如APR等库，可以最小安装编译环境。</li>
+<li>但是，如果你需要编译安装MariaDB，因为需要用到CMake，完整安装编译环境。</li>
 <pre><code>
-bash ~/.lanmp/parts/pre-min.sh
+bash ~/.lanmp/install.sh premin
 </code></pre>
 
 <h4>搭建Nginx+MariaDB+PHP环境</h4>
@@ -56,7 +77,7 @@ bash ~/.lanmp/parts/pre-min.sh
 <p>Nginx/MariaDB安装顺序随意。</p>
 <p>1.安装<code>Nginx</code></p>
 <pre><code>
-bash ~/.lanmp/parts/nginx.sh
+bash ~/.lanmp/install.sh nginx
 </code></pre>
 <p>运行后会询问您要安装的Nginx版本，请参照<a href=http://nginx.org/en/download.html>Nginx下载页面</a>输入版本号（如1.8.0）。</p>
 <p>如果直接回车则安装最新稳定版本。</p>
@@ -65,18 +86,18 @@ bash ~/.lanmp/parts/nginx.sh
 <p>MariaDB分为使用<code>二进制包</code>（推荐）和<code>源码编译</code>安装。小内存服务器慎用源代码安装，可能会因为内存不够编译失败。</p>
 <p>使用二进制包安装，请运行以下命令：</p>
 <pre><code>
-bash ~/.lanmp/parts/mariadb-bin.sh
+bash ~/.lanmp/install.sh mariadbin
 </code></pre>
 <p>运行后会询问您是32位系统还是64位系统，GLIBC是否为2.14版本以上，按照提示输入即可。</p>
 <p>使用源码编译安装，请运行以下命令：</p>
 <pre><code>
-bash ~/.lanmp/parts/mariadb.sh
+bash ~/.lanmp/install.sh mariadb
 </code></pre>
 <p>安装完成后会提示您输入root密码，如果回车则默认密码为root。</p>
 
 <p>3.安装<code>PHP</code></p>
 <pre><code>
-bash ~/.lanmp/parts/php-nginx.sh
+bash ~/.lanmp/install.sh phpnginx
 </code></pre>
 
 <h4>搭建Apache+MariaDB+PHP环境</h4>
@@ -84,25 +105,25 @@ bash ~/.lanmp/parts/php-nginx.sh
 <p>Apache/MariaDB安装顺序随意。</p>
 <p>1.安装<code>Apache</code></p>
 <pre><code>
-bash ~/.lanmp/parts/apache.sh
+bash ~/.lanmp/install.sh apache
 </code></pre>
 
 <p>2.安装<code>MariaDB</code></p>
 <p>MariaDB分为使用<code>二进制包</code>（推荐）和<code>源码编译</code>安装。小内存服务器慎用源代码安装，可能会因为内存不够编译失败。</p>
-<p>〇使用二进制包安装，请运行以下命令：</p>
+<p>使用二进制包安装，请运行以下命令：</p>
 <pre><code>
-bash ~/.lanmp/parts/mariadb-bin.sh
+bash ~/.lanmp/install.sh mariadbin
 </code></pre>
 <p>运行后会询问您是32位系统还是64位系统，GLIBC是否为2.14版本以上，按照提示输入即可。</p>
-<p>〇使用源码编译安装，请运行以下命令：</p>
+<p>使用源码编译安装，请运行以下命令：</p>
 <pre><code>
-bash ~/.lanmp/parts/mariadb.sh
+bash ~/.lanmp/install.sh mariadb
 </code></pre>
 <p>安装完成后会提示您输入root密码，如果回车则默认密码为root。</p>
 
 <p>3.安装<code>PHP</code></p>
 <pre><code>
-bash ~/.lanmp/parts/php-apache.sh
+bash ~/.lanmp/install.sh phpapache
 </code></pre>
 
 <h1>卸载</h1>
