@@ -33,13 +33,13 @@ ldconfig
 #下载Libmcrypt,mhash,mcrypt
 cd ~/.lanmp/resources
 #判断是否已经存在源文件
-if [ ! -f "~/.lanmp/resources/libmcrypt.tar.gz" ] then
+if [ ! -f "~/.lanmp/resources/libmcrypt.tar.gz" ]; then
   wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
 fi
-if [ ! -f "~/.lanmp/resources/mcrypt.tar.gz" ] then
+if [ ! -f "~/.lanmp/resources/mcrypt.tar.gz" ]; then
   wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
 fi
-if [ ! -f "~/.lanmp/resources/mhash.tar.gz" ] then
+if [ ! -f "~/.lanmp/resources/mhash.tar.gz" ]; then
   wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
 fi
 tar -zxf libmcrypt.tar.gz
@@ -59,7 +59,7 @@ make && make install
 
 #安装pcre
 cd ~/.lanmp/resources
-if [ ! -f "~/.lanmp/resources/pcre.tar.gz" ] then
+if [ ! -f "~/.lanmp/resources/pcre.tar.gz" ]; then
   wget -O pcre.tar.gz http://sourceforge.net/projects/pcre/files/pcre/8.37/pcre-8.37.tar.gz/download
 fi
 tar -zxf pcre.tar.gz

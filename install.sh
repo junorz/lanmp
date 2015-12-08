@@ -15,7 +15,7 @@ if [ $(id -u) != "0" ]; then
 fi
 
 #安装前删除resources文件夹下的源文件
-read -p "Would you want to delete all files in ~/.lanmp/resources? " deleteresources
+read -p "Would you want to delete all files in ~/.lanmp/resources? [Y/N]" deleteresources
 if [ "$deleteresources" = "Y" ] || [ "$deleteresources" = "y" ]; then
   rm -rf ~/.lanmp/resources/libmcrypt*
   rm -rf ~/.lanmp/resources/mcrypt*
@@ -140,8 +140,7 @@ echo "Starting Installation..."
 #版本号参照http://nginx.org/en/download.html
 Nginx_Version(){
 #判断是否已经存在源文件
-if [ ! -f "~/.lanmp/resources/nginx.tar.gz" ] then
-
+if [ ! -f "~/.lanmp/resources/nginx.tar.gz" ]; then
   echo "The version of Nginx can be referenced to http://nginx.org/en/download.html"
   read -p "Enter the version you want to install(1.8.0 by deafult):" vernginx
   if [ "$vernginx" = "" ]; then
@@ -150,9 +149,9 @@ if [ ! -f "~/.lanmp/resources/nginx.tar.gz" ] then
 
   read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstallnginx
   if [ "$ifinstallnginx" = "Y" ] || [ "$ifinstallnginx" = "y" ]; then
-	echo "Trying downloading the Nginx..."
-	#尝试获取自定义的Nginx版本，若不成功，则退出
-	wget -O ~/.lanmp/resources/nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
+	   echo "Trying downloading the Nginx..."
+	    #尝试获取自定义的Nginx版本，若不成功，则退出
+	     wget -O ~/.lanmp/resources/nginx.tar.gz http://nginx.org/download/nginx-$vernginx.tar.gz
 	  if [ $? -ne 0 ]; then
 		    echo "Nginx $vernginx cannot be downloaded.Please check if you have enter a correct version."
 		    exit 1
@@ -178,7 +177,7 @@ echo "=================================================="
 #询问要安装的MariaDB版本
 MariaDB_Version(){
 #判断是否已经存在源文件
-if [ ! -f "~/.lanmp/resources/mariadbin.tar.gz" ] then
+if [ ! -f "~/.lanmp/resources/mariadbin.tar.gz" ]; then
   #下载二进制安装包
   read -p "Is your system 32bit or 64bit?(Enter 32 or 64)" sysbit
   if [ "$sysbit" = "32" ]; then

@@ -12,7 +12,7 @@ Install_PHPwithApache(){
 #下载编译
 cd ~/.lanmp/resources
 #判断是否已经存在源文件
-if [ ! -f "~/.lanmp/resources/php.tar.gz" ] then
+if [ ! -f "~/.lanmp/resources/php.tar.gz" ]; then
   wget -O php.tar.gz http://php.net/get/php-5.6.15.tar.gz/from/this/mirror
 fi
 tar -zxf php.tar.gz
