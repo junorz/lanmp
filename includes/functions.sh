@@ -84,3 +84,8 @@ if [ ! -f ~/.lanmp/resources/mariadbin.tar.gz ]; then
   fi
 fi
 }
+
+StartInstallation(){
+  echo "Installation is ready. Press Enter to start the installation."
+  read -p "Or Press Ctrl+C to exit."
+}

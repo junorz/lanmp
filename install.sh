@@ -143,8 +143,6 @@ fi
 . includes/php-nginx.sh
 . includes/php-apache.sh
 
-echo "Installation is ready. Press Enter to start the installation."
-read -p "Or Press Ctrl+C to exit."
 
 #开始安装过程
 #检查用户需要安装什么
@@ -152,6 +150,7 @@ if [ "$WhatInstall" = "lnmp" ]; then
       Nginx_Version
       MariaDB_RootPassword
       MariaDB_Version
+      StartInstallation
       Preinstall_Min
       Install_Nginx
       Install_MariaDBin
@@ -160,29 +159,38 @@ elif [ "$WhatInstall" = "lamp" ]; then
       Nginx_Version
       MariaDB_RootPassword
       MariaDB_Version
+      StartInstallation
       Preinstall
       Install_Apache
       Install_MariaDBin
       Install_PHPwithApache
 elif [ "$WhatInstall" = "pre" ]; then
+      StartInstallation
       Preinstall
 elif [ "$WhatInstall" = "premin" ]; then
+      StartInstallation
       Preinstall_Min
 elif [ "$WhatInstall" = "nginx" ]; then
       Nginx_Version
+      StartInstallation
       Install_Nginx
 elif [ "$WhatInstall" = "apache" ]; then
+      StartInstallation
       Install_Apache
 elif [ "$WhatInstall" = "mariadb" ]; then
       MariaDB_RootPassword
+      StartInstallation
       Install_MairaDB
 elif [ "$WhatInstall" = "mariadbin" ]; then
       MariaDB_Version
       MariaDB_RootPassword
+      StartInstallation
       Install_MariaDBin
 elif [ "$WhatInstall" = "phpnginx" ]; then
+      StartInstallation
       Install_PHPwithNginx
 elif [ "$WhatInstall" = "phpapache" ]; then
+      StartInstallation
       Install_PHPwithApache
 else
       exit 1
