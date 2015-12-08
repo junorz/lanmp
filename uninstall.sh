@@ -3,7 +3,7 @@
 # LANMP Uninstall Script
 #
 # Copyright (c) 2011-2015 Junorz.com All rights reserved.
-# 
+#
 # Intro: http://www.junorz.com/archives/374.html
 #
 #====================================================================
@@ -13,6 +13,9 @@ if [ $(id -u) != "0" ]; then
     echo "Please login as root to run this script"
     exit 1
 fi
+
+. includes/functions.sh
+Get_Dist_Name
 
 echo "==========================================="
 echo "1 - Nginx"
@@ -27,16 +30,26 @@ echo "==========================================="
 read -p "Which one would you uninstall?" uninst
 if [ "$uninst" = 1 ]; then
 	echo "Uninstalling Nginx..."
-	nginx -s stop
+	service nginx stop
 	rm -rf /usr/bin/nginx
 	rm -rf /usr/local/nginx
 	rm -rf ~/.lanmp/resources/nginx*
-	sed -i "/nginx/d" /etc/rc.d/rc.local
+  if [ "$PM" = "yum" ]; then
+      chkconfig nginx off
+      chkconfig --del nginx
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f nginx remove
+  fi
 	echo "Nginx Uninstalled"
 elif [ "$uninst" = 2 ]; then
 	echo "Uninstalling Apache..."
 	service httpd stop
-	chkconfig --del httpd
+  if [ "$PM" = "yum" ]; then
+      chkconfig httpd off
+      chkconfig --del httpd
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f httpd remove
+  fi
 	rm -rf /etc/init.d/httpd
 	rm -rf /usr/local/apache
 	rm -rf ~/.lanmp/resources/httpd*
@@ -44,7 +57,12 @@ elif [ "$uninst" = 2 ]; then
 elif [ "$uninst" = 3 ]; then
 	echo "Uninstalling MariaDB..."
 	service mysqld stop
-	chkconfig --del mysqld
+  if [ "$PM" = "yum" ]; then
+      chkconfig mysqld off
+      chkconfig --del mysqld
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f mysqld remove
+  fi
 	rm -rf /etc/init.d/mysqld
 	rm -rf /usr/local/mysql
 	rm -rf /etc/my.cnf
@@ -54,10 +72,14 @@ elif [ "$uninst" = 3 ]; then
 	echo "MariaDB Uninstalled"
 elif [ "$uninst" = 4 ]; then
 	echo "Uninstalling PHP-with-Nginx"
-	pkill php-fpm
-	sed -i "/php/d" /etc/rc.d/rc.local
+	service php-fpm stop
+  if [ "$PM" = "yum" ]; then
+      chkconfig php-fpm off
+      chkconfig --del php-fpm
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f php-fpm remove
+  fi
 	rm -rf /usr/bin/php-fpm
-    rm -rf /usr/local/bin/php-fpm
 	rm -rf /usr/local/php
 	rm -rf ~/.lanmp/resources/php*
 	rm -rf /usr/local/nginx/conf/nginx.conf
@@ -72,49 +94,72 @@ elif [ "$uninst" = 5 ]; then
 	echo "PHP-with-Apache Uninstalled"
 elif [ "$uninst" = 6 ]; then
 	echo "Uninstalling LNMP"
-	nginx -s stop
+	service nginx stop
 	rm -rf /usr/bin/nginx
 	rm -rf /usr/local/nginx
 	rm -rf ~/.lanmp/resources/nginx*
-	sed -i "/nginx/d" /etc/rc.d/rc.local
-	
+  if [ "$PM" = "yum" ]; then
+      chkconfig nginx off
+      chkconfig --del nginx
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f nginx remove
+  fi
+
 	service mysqld stop
-	chkconfig --del mysqld
+  if [ "$PM" = "yum" ]; then
+      chkconfig mysqld off
+      chkconfig --del mysqld
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f mysqld remove
+  fi
 	rm -rf /etc/init.d/mysqld
 	rm -rf /usr/local/mysql
 	rm -rf /etc/my.cnf
 	rm -rf ~/.lanmp/resources/mariadb*
-	
-	pkill php-fpm
-	sed -i "/php/d" /etc/rc.d/rc.local
+
+	service php-fpm stop
+  if [ "$PM" = "yum" ]; then
+      chkconfig php-fpm off
+      chkconfig --del php-fpm
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f php-fpm remove
+  fi
 	rm -rf /usr/bin/php-fpm
-    rm -rf /usr/local/bin/php-fpm
 	rm -rf /usr/local/php
 	rm -rf ~/.lanmp/resources/php*
-	
+
 	sed -i "/\/usr\/local\/lib/d" /etc/ld.so.conf
-	sed -i "/apr/d" /etc/ld.so.conf
 	sed -i "/mysql/d" /etc/ld.so.conf
 	ldconfig
 	echo "LNMP Uninstalled"
 elif [ "$uninst" = 7 ]; then
 	echo "Uninstalling LAMP"
 	service httpd stop
-	chkconfig --del httpd
+  if [ "$PM" = "yum" ]; then
+      chkconfig httpd off
+      chkconfig --del httpd
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f httpd remove
+  fi
 	rm -rf /etc/init.d/httpd
 	rm -rf /usr/local/apache
 	rm -rf ~/.lanmp/resources/httpd*
-	
+
 	service mysqld stop
-	chkconfig --del mysqld
+  if [ "$PM" = "yum" ]; then
+      chkconfig mysqld off
+      chkconfig --del mysqld
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f mysqld remove
+  fi
 	rm -rf /etc/init.d/mysqld
 	rm -rf /usr/local/mysql
 	rm -rf /etc/my.cnf
 	rm -rf ~/.lanmp/resources/mariadb*
-	
+
 	rm -rf /usr/local/php
 	rm -rf ~/.lanmp/resources/php*
-	
+
 	sed -i "/\/usr\/local\/lib/d" /etc/ld.so.conf
 	sed -i "/apr/d" /etc/ld.so.conf
 	sed -i "/mysql/d" /etc/ld.so.conf

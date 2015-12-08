@@ -39,7 +39,12 @@ chown -R mysql /usr/local/mysql/data
 
 #开机自启动
 cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
-chkconfig --add mysqld
+if [ "$PM" = "yum" ]; then
+    chkconfig --add mysqld
+    chkconfig mysqld on
+elif [ "$PM" = "apt" ]; then
+    update-rc.d -f mysqld defaults
+fi
 
 #设置系统库路径
 echo "/usr/local/mysql/lib" >> /etc/ld.so.conf

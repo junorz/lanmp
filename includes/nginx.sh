@@ -9,7 +9,7 @@
 #====================================================================
 
 Install_Nginx(){
-	
+
 	#创建运行Nginx进程的用户
 	groupadd www
 	useradd -M -s /sbin/nologin -g www www
@@ -31,8 +31,14 @@ ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
 #停止Nginx请直接在命令行输入nginx -s stop
 #重新载入nginx.conf请直接在命令行输入nginx -s reload
 
-#加入开机自启动，如果不需要自在/etc/rc.d/rc.local文件里删除相应命令
-echo "/usr/bin/nginx" >> /etc/rc.d/rc.local
+#加入开机自启动
+cp ~/.lanmp/includes/Starupscrupt_nginx /etc/init.d/nginx
+if [ "$PM" = "yum" ]; then
+    chkconfig --add nginx
+    chkconfig nginx on
+elif [ "$PM" = "apt" ]; then
+    update-rc.d -f nginx defaults
+fi
 
 #启动Nginx
 /usr/bin/nginx

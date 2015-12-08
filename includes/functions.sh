@@ -7,8 +7,6 @@
 # Intro: http://www.junorz.com/archives/374.html
 #
 #====================================================================
-#询问一些安装参数
-
 #询问要安装的Nginx版本
 #版本号参照http://nginx.org/en/download.html
 Nginx_Version(){
@@ -19,7 +17,6 @@ if [ ! -f ~/.lanmp/resources/nginx.tar.gz ]; then
   if [ "$vernginx" = "" ]; then
 	   vernginx="1.8.0"
   fi
-
   read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstallnginx
   if [ "$ifinstallnginx" = "Y" ] || [ "$ifinstallnginx" = "y" ]; then
 	   echo "Trying downloading the Nginx..."
@@ -53,10 +50,8 @@ MariaDB_Version(){
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/mariadbin.tar.gz ]; then
   #下载二进制安装包
-  read -p "Is your system 32bit or 64bit?(Enter 32 or 64)" sysbit
   if [ "$sysbit" = "32" ]; then
-  	yum -y install glibc
-  	rpm -qa|grep glibc
+  	ldd --version
   	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
   	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
   		wget -O ~/.lanmp/resources/mariadbin.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-glibc_214-x86/mariadb-10.1.9-linux-glibc_214-i686.tar.gz
@@ -67,8 +62,7 @@ if [ ! -f ~/.lanmp/resources/mariadbin.tar.gz ]; then
   		exit 1
   	fi
   elif [ "$sysbit" = "64" ]; then
-  	yum -y install glibc
-  	rpm -qa|grep glibc
+  	ldd --version
   	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
   	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
   		wget -O ~/.lanmp/resources/mariadbin.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-glibc_214-x86_64/mariadb-10.1.9-linux-glibc_214-x86_64.tar.gz
@@ -82,6 +76,117 @@ if [ ! -f ~/.lanmp/resources/mariadbin.tar.gz ]; then
   	echo "Cannot detect your system's type.Please enter a legal value."
   	exit 1
   fi
+fi
+}
+
+#判断系统是32还是64位
+#注：这条函数来自lnmp.org
+Get_OS_Bit()
+{
+    if [[ `getconf WORD_BIT` = '32' && `getconf LONG_BIT` = '64' ]] ; then
+        sysbit='64'
+    else
+        sysbit='32'
+    fi
+}
+
+#判断系统类型
+#注：这条函数来自lnmp.org
+Get_Dist_Name()
+{
+    if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
+        DISTRO='CentOS'
+        PM='yum'
+    elif grep -Eqi "Red Hat Enterprise Linux Server" /etc/issue || grep -Eq "Red Hat Enterprise Linux Server" /etc/*-release; then
+        DISTRO='RHEL'
+        PM='yum'
+    elif grep -Eqi "Aliyun" /etc/issue || grep -Eq "Aliyun" /etc/*-release; then
+        DISTRO='Aliyun'
+        PM='yum'
+    elif grep -Eqi "Fedora" /etc/issue || grep -Eq "Fedora" /etc/*-release; then
+        DISTRO='Fedora'
+        PM='yum'
+    elif grep -Eqi "Debian" /etc/issue || grep -Eq "Debian" /etc/*-release; then
+        DISTRO='Debian'
+        PM='apt'
+    elif grep -Eqi "Ubuntu" /etc/issue || grep -Eq "Ubuntu" /etc/*-release; then
+        DISTRO='Ubuntu'
+        PM='apt'
+    elif grep -Eqi "Raspbian" /etc/issue || grep -Eq "Raspbian" /etc/*-release; then
+        DISTRO='Raspbian'
+        PM='apt'
+    else
+        DISTRO='unknow'
+    fi
+    Get_OS_Bit
+}
+
+Dependence(){
+if [ "PM" = "yum" ]; then
+    #安装编译环境
+    yum -y install epel-release
+    yum -y groupinstall "Development Tools"
+    yum -y install wget unzip bison libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel curl curl-devel libtool libtool-ltdl-devel openssl-devel ncurses ncurses-devel libaio-devel cyrus-sasl-devel jemalloc
+    #删除预安装项
+    yum -y remove mysql-server mysql mysql-libs
+    yum -y remove php-mysql
+    yum -y remove httpd*
+    yum -y remove php*
+    yum -y remove httpd
+    rm -rf /etc/my.cnf
+    rm -rf /usr/lib/mysql
+    rm -rf /usr/share/mysql
+
+    #其他无法通过Yum安装的工具
+    #下载Libmcrypt,mhash,mcrypt
+    cd ~/.lanmp/resources
+    #判断是否已经存在源文件
+    if [ ! -f ~/.lanmp/resources/libmcrypt.tar.gz ]; then
+      wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
+    fi
+    if [ ! -f ~/.lanmp/resources/mcrypt.tar.gz ]; then
+      wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
+    fi
+    if [ ! -f ~/.lanmp/resources/mhash.tar.gz ]; then
+      wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
+    fi
+    tar -zxf libmcrypt.tar.gz
+    tar -zxf mcrypt.tar.gz
+    tar -zxf mhash.tar.gz
+    cd ~/.lanmp/resources/libmcrypt*
+    ./configure
+    make && make install
+    ldconfig
+    cd ~/.lanmp/resources/mhash*
+    ./configure
+    make && make install
+    ldconfig
+    cd ~/.lanmp/resources/mcrypt*
+    ./configure
+    make && make install
+
+
+elif [ "PM" = "apt" ]; then
+    #安装编译环境（以下参考自lnmp.org）
+    apt-get update -y
+    apt-get autoremove -y
+    apt-get -fy install
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get install -y build-essential gcc g++ make
+    for packages in build-essential gcc g++ make cmake autoconf automake re2c wget cron bzip2 libzip-dev libc6-dev file rcconf flex vim bison m4 gawk less cpp binutils diffutils unzip tar bzip2 libbz2-dev libncurses5 libncurses5-dev libtool libevent-dev openssl libssl-dev zlibc libsasl2-dev libltdl3-dev libltdl-dev zlib1g zlib1g-dev libbz2-1.0 libbz2-dev libglib2.0-0 libglib2.0-dev libpng3 libjpeg62 libjpeg62-dev libjpeg-dev libpng-dev libpng12-0 libpng12-dev libkrb5-dev curl libcurl3 libcurl3-gnutls libcurl4-gnutls-dev libcurl4-openssl-dev libpq-dev libpq5 gettext libjpeg-dev libpng12-dev libxml2-dev libcap-dev ca-certificates debian-keyring debian-archive-keyring libc-client2007e-dev psmisc patch git libc-ares-dev libicu-dev e2fsprogs libxslt libxslt1-dev libjemalloc-dev;
+    do apt-get install -y $packages --force-yes; done
+    #删除预安装项
+    apt-get update -y
+    for removepackages in apache2 apache2-doc apache2-utils apache2.2-common apache2.2-bin apache2-mpm-prefork apache2-doc apache2-mpm-worker mysql-client mysql-server mysql-common mysql-server-core-5.5 mysql-client-5.5 php5 php5-common php5-cgi php5-cli php5-mysql php5-curl php5-gd;
+    do apt-get purge -y $removepackages; done
+    killall apache2
+    dpkg -l |grep apache
+    dpkg -P apache2 apache2-doc apache2-mpm-prefork apache2-utils apache2.2-common
+    dpkg -l |grep mysql
+    dpkg -P mysql-server mysql-common libmysqlclient15off libmysqlclient15-dev
+    dpkg -l |grep php
+    dpkg -P php5 php5-common php5-cli php5-cgi php5-mysql php5-curl php5-gd
+    apt-get autoremove -y && apt-get clean
 fi
 }
 

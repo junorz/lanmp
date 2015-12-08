@@ -44,6 +44,12 @@ sed -i "3 a #description:httpd" /usr/local/apache/bin/apachectl
 
 #添加服务
 cp /usr/local/apache/bin/apachectl /etc/init.d/httpd
-chkconfig --add httpd
+if [ "$PM" = "yum" ]; then
+    chkconfig --add httpd
+    chkconfig httpd on
+elif [ "$PM" = "apt" ]; then
+    update-rc.d -f httpd defaults
+fi
 service httpd start
+
 }

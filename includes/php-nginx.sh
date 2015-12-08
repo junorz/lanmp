@@ -60,16 +60,20 @@ make && make install
 #复制配置文件
 cp php.ini-development /usr/local/php/etc/php.ini
 cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
-cp sapi/fpm/php-fpm /usr/local/bin
+cp sapi/fpm/php-fpm /usr/bin
 
-#软链接以便命令行直接调用
-ln -s /usr/local/bin/php-fpm /usr/bin/php-fpm
 
 #启动php-fpm请直接在命令行输入php
 #停止php-fpm请直接在命令行输入pkill php
 
-#加入开机自启动，如果不需要自在/etc/rc.d/rc.local文件里删除相应命令
-echo "/usr/bin/php-fpm" >> /etc/rc.d/rc.local
+#加入开机自启动
+cp ~/.lanmp/includes/Starupscrupt_phpfpm /etc/init.d/php-fpm
+if [ "$PM" = "yum" ]; then
+    chkconfig --add php-fpm
+    chkconfig php-fpm on
+elif [ "$PM" = "apt" ]; then
+    update-rc.d -f php-fpm defaults
+fi
 
 #配置php.ini文件
 sed -i "s/^.*cgi.fix_pathinfo=.*/cgi.fix_pathinfo=0/g" /usr/local/php/etc/php.ini
@@ -86,7 +90,7 @@ cp ~/.lanmp/parts/nginx.conf /usr/local/nginx/conf/nginx.conf
 /usr/bin/nginx -s reload
 
 #启动php-fpm进程
-/usr/bin/php-fpm
+service php-fpm start
 
 #下载探针
 wget -O /usr/local/nginx/html/tz.zip http://www.yahei.net/tz/tz.zip

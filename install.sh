@@ -14,6 +14,20 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
+#引用安装文件
+. includes/functions.sh
+. includes/preinstall.sh
+. includes/pre-min.sh
+. includes/nginx.sh
+. includes/apache.sh
+. includes/mariadb.sh
+. includes/mariadb-bin.sh
+. includes/php-nginx.sh
+. includes/php-apache.sh
+
+#获取系统类型
+Get_Dist_Name
+
 #检查用户需要安装什么
 WhatInstall="Noinstall"
 case "$1" in
@@ -131,18 +145,6 @@ else
   rm -rf ~/.lanmp/resources/mariadb-*
   rm -rf ~/.lanmp/resources/php-*
 fi
-
-#引用安装文件
-. includes/functions.sh
-. includes/preinstall.sh
-. includes/pre-min.sh
-. includes/nginx.sh
-. includes/apache.sh
-. includes/mariadb.sh
-. includes/mariadb-bin.sh
-. includes/php-nginx.sh
-. includes/php-apache.sh
-
 
 #开始安装过程
 #检查用户需要安装什么
