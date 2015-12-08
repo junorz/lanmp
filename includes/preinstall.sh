@@ -81,7 +81,7 @@ make && make install
 #安装CMake
 cd ~/.lanmp/resources
 if [ ! -f ~/.lanmp/resources/cmake.tar.gz ]; then
-  wget -O cmake.tar.gz http://sourceforge.net/projects/lanmp/files/cmake-3.2.1.tar.gz/download
+  wget -O cmake.tar.gz https://cmake.org/files/v3.4/cmake-3.4.1.tar.gz
 fi
 tar -zxf cmake.tar.gz
 cd ~/.lanmp/resources/cmake*
