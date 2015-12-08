@@ -19,7 +19,7 @@ useradd -r -g mysql mysql
 cd ~/.lanmp/resources
 
 #判断是否已经存在源文件
-if [ ! -f "~/.lanmp/resources/mariadb.tar.gz" ]; then
+if [ ! -f ~/.lanmp/resources/mariadb.tar.gz ]; then
   wget -O mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/source/mariadb-10.1.9.tar.gz
 fi
 

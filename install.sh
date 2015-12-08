@@ -140,7 +140,7 @@ echo "Starting Installation..."
 #版本号参照http://nginx.org/en/download.html
 Nginx_Version(){
 #判断是否已经存在源文件
-if [ ! -f "~/.lanmp/resources/nginx.tar.gz" ]; then
+if [ ! -f ~/.lanmp/resources/nginx.tar.gz ]; then
   echo "The version of Nginx can be referenced to http://nginx.org/en/download.html"
   read -p "Enter the version you want to install(1.8.0 by deafult):" vernginx
   if [ "$vernginx" = "" ]; then
@@ -158,6 +158,7 @@ if [ ! -f "~/.lanmp/resources/nginx.tar.gz" ]; then
 	  fi
   else
     echo "Installation interrupted.Please try again."
+    exit 1
   fi
 
 fi
@@ -177,7 +178,7 @@ echo "=================================================="
 #询问要安装的MariaDB版本
 MariaDB_Version(){
 #判断是否已经存在源文件
-if [ ! -f "~/.lanmp/resources/mariadbin.tar.gz" ]; then
+if [ ! -f ~/.lanmp/resources/mariadbin.tar.gz ]; then
   #下载二进制安装包
   read -p "Is your system 32bit or 64bit?(Enter 32 or 64)" sysbit
   if [ "$sysbit" = "32" ]; then
