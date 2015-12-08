@@ -32,9 +32,16 @@ ldconfig
 #其他无法通过Yum安装的工具
 #下载Libmcrypt,mhash,mcrypt
 cd ~/.lanmp/resources
-wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
-wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
-wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
+#判断是否已经存在源文件
+if [ ! -f "~/.lanmp/resources/libmcrypt.tar.gz" ] then
+  wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
+fi
+if [ ! -f "~/.lanmp/resources/mcrypt.tar.gz" ] then
+  wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
+fi
+if [ ! -f "~/.lanmp/resources/mhash.tar.gz" ] then
+  wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
+fi
 tar -zxf libmcrypt.tar.gz
 tar -zxf mcrypt.tar.gz
 tar -zxf mhash.tar.gz
@@ -52,7 +59,9 @@ make && make install
 
 #安装pcre
 cd ~/.lanmp/resources
-wget -O pcre.tar.gz http://sourceforge.net/projects/pcre/files/pcre/8.37/pcre-8.37.tar.gz/download
+if [ ! -f "~/.lanmp/resources/pcre.tar.gz" ] then
+  wget -O pcre.tar.gz http://sourceforge.net/projects/pcre/files/pcre/8.37/pcre-8.37.tar.gz/download
+fi
 tar -zxf pcre.tar.gz
 cd ~/.lanmp/resources/pcre*
 ./configure

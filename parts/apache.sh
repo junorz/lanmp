@@ -16,7 +16,12 @@ useradd -M -s /sbin/nologin -g www www
 
 #下载编译
 cd ~/.lanmp/resources
-wget -O httpd.tar.gz  http://sourceforge.net/projects/lanmp/files/httpd-2.4.12.tar.gz/download
+
+#判断是否已经存在源文件
+if [ ! -f "~/.lanmp/resources/httpd.tar.gz" ] then
+  wget -O httpd.tar.gz  http://sourceforge.net/projects/lanmp/files/httpd-2.4.12.tar.gz/download
+fi
+
 tar -zxf httpd.tar.gz
 cd httpd*
 ./configure --prefix=/usr/local/apache \

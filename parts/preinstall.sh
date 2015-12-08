@@ -32,9 +32,16 @@ ldconfig
 #其他无法通过Yum安装的工具
 #下载Libmcrypt,mhash,mcrypt
 cd ~/.lanmp/resources
-wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
-wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
-wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
+#判断是否已经存在源文件
+if [ ! -f "~/.lanmp/resources/libmcrypt.tar.gz" ] then
+  wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
+fi
+if [ ! -f "~/.lanmp/resources/mcrypt.tar.gz" ] then
+  wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
+fi
+if [ ! -f "~/.lanmp/resources/mhash.tar.gz" ] then
+  wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
+fi
 tar -zxf libmcrypt.tar.gz
 tar -zxf mcrypt.tar.gz
 tar -zxf mhash.tar.gz
@@ -53,7 +60,9 @@ make && make install
 #安装bison
 yum -y remove bison*
 cd ~/.lanmp/resources
-wget -O bison.tar.gz http://sourceforge.net/projects/lanmp/files/bison-3.0.4.tar.gz/download
+if [ ! -f "~/.lanmp/resources/bison.tar.gz" ] then
+  wget -O bison.tar.gz http://sourceforge.net/projects/lanmp/files/bison-3.0.4.tar.gz/download
+fi
 tar -zxf bison.tar.gz
 cd ~/.lanmp/resources/bison*
 ./configure
@@ -61,7 +70,9 @@ make && make install
 
 #安装pcre
 cd ~/.lanmp/resources
-wget -O pcre.tar.gz http://sourceforge.net/projects/pcre/files/pcre/8.37/pcre-8.37.tar.gz/download
+if [ ! -f "~/.lanmp/resources/pcre.tar.gz" ] then
+  wget -O pcre.tar.gz http://sourceforge.net/projects/pcre/files/pcre/8.37/pcre-8.37.tar.gz/download
+fi
 tar -zxf pcre.tar.gz
 cd ~/.lanmp/resources/pcre*
 ./configure
@@ -69,7 +80,9 @@ make && make install
 
 #安装CMake
 cd ~/.lanmp/resources
-wget -O cmake.tar.gz http://sourceforge.net/projects/lanmp/files/cmake-3.2.1.tar.gz/download
+if [ ! -f "~/.lanmp/resources/cmake.tar.gz" ] then
+  wget -O cmake.tar.gz http://sourceforge.net/projects/lanmp/files/cmake-3.2.1.tar.gz/download
+fi
 tar -zxf cmake.tar.gz
 cd ~/.lanmp/resources/cmake*
 ./bootstrap
@@ -77,7 +90,9 @@ make && make install
 
 #安装APR
 cd ~/.lanmp/resources
-wget -O apr.tar.gz http://sourceforge.net/projects/lanmp/files/apr-1.5.1.tar.gz/download
+if [ ! -f "~/.lanmp/resources/apr.tar.gz" ] then
+  wget -O apr.tar.gz http://sourceforge.net/projects/lanmp/files/apr-1.5.1.tar.gz/download
+fi
 tar -zxf apr.tar.gz
 cd apr*
 ./configure --prefix=/usr/local/apr
@@ -85,7 +100,9 @@ make && make install
 
 #安装APR-util
 cd ~/.lanmp/resources
-wget -O apr-util.tar.gz http://sourceforge.net/projects/lanmp/files/apr-util-1.5.4.tar.gz/download
+if [ ! -f "~/.lanmp/resources/apr-util.tar.gz" ] then
+  wget -O apr-util.tar.gz http://sourceforge.net/projects/lanmp/files/apr-util-1.5.4.tar.gz/download
+fi
 tar -zxf apr-util.tar.gz
 cd apr-util*
 ./configure --prefix=/usr/local/apr-util -with-apr=/usr/local/apr/bin/apr-1-config

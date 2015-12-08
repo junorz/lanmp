@@ -10,18 +10,14 @@
 
 Install_PHPwithNginx(){
 
-#尝试下载nginx配置文件
-wget -O ~/.lanmp/resources/nginx.conf http://source.myclouds.org/nginx.conf
-if [ $? -ne 0 ]; then
-	echo "The configure file of nginx cannot be downloaded. Please check if http://source.myclouds.org/ can be accessed or not."
-	exit 1
-else
-	echo "Installaion will begin..."
-fi
-
 #下载编译
 cd ~/.lanmp/resources
-wget -O php.tar.gz http://php.net/get/php-5.6.15.tar.gz/from/this/mirror
+
+#判断是否已经存在源文件
+if [ ! -f "~/.lanmp/resources/php.tar.gz" ] then
+	wget -O php.tar.gz http://php.net/get/php-5.6.15.tar.gz/from/this/mirror
+fi
+
 tar -zxf php.tar.gz
 cd php*
 ./configure --prefix=/usr/local/php \
@@ -83,8 +79,8 @@ sed -i "s/upload_max_filesize =.*/upload_max_filesize = 50M/g" /usr/local/php/et
 sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/php/etc/php.ini
 
 #替换Nginx.conf文件以便支持PHP文件
-mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx-backup.conf
-cp ~/.lanmp/resources/nginx.conf /usr/local/nginx/conf/nginx.conf
+mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx_backup.conf
+cp ~/.lanmp/parts/nginx.conf /usr/local/nginx/conf/nginx.conf
 
 #重启nginx
 /usr/bin/nginx -s reload
