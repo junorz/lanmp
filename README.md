@@ -1,6 +1,6 @@
 <h1>简介</h1>
 <ol>
-<li>此脚本采用一键/分步安装的方式可以在采用Centos服务器的系统上快速布署WEB环境。</li>
+<li>此脚本采用一键/分步安装的方式可以在采用Centos/Debian/Ubuntu服务器的系统上快速布署WEB环境。</li>
 <li>已在<code>Centos6</code>/<code>Centos7</code>的32和64位系统下测试完成。</li>
 <li>目前可以布署的组合有<code>Nginx</code>+<code>MariaDB</code>+<code>PHP</code>或<code>Apache</code>+<code>MariaDB</code>+<code>PHP</code></li>
 <li>请不要把Nginx和Apahce一起安装！</li>
