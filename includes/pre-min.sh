@@ -11,7 +11,7 @@
 Preinstall_Min(){
 
 #安装编译环境，然后移除自带软件
-if [ "PM" = "yum" ]; then
+if [ "$PM" = "yum" ]; then
     #安装编译环境
     yum -y install epel-release
     yum -y groupinstall "Development Tools"
@@ -55,7 +55,7 @@ if [ "PM" = "yum" ]; then
     make && make install
 
 
-elif [ "PM" = "apt" ]; then
+elif [ "$PM" = "apt" ]; then
     #安装编译环境（以下参考自lnmp.org）
     apt-get update -y
     apt-get autoremove -y
