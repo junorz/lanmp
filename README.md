@@ -7,11 +7,17 @@
 <li>分步安装可以避免一键包中途产生错误需要重头再来的问题。</li>
 </ol>
 
+<h1>如何使用git命令同步到本地</h1>
+<pre><code>
+git clone https://github.com/junorz/lanmp.git ~/.lanmp
+</code></pre>
+<h4>注意：一定不能同步到 ~/.lanmp 以外的地方！！</h4>
+
 <h1>如何更新到最新脚本</h1>
 <pre><code>cd ~/.lanmp
 git pull</code></pre>
 
-<h1>使用方法</h1>
+<h1>安装方法</h1>
 <p>只需要给install.sh文件传递参数即可。例如：</p>
 <pre><code>
 install.sh lnmp
