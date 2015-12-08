@@ -8,17 +8,7 @@
 #
 #====================================================================
 
-# 检查是否为管理员
-if [ $(id -u) != "0" ]; then
-    echo "Please login as root to run this script"
-    exit 1
-fi
-
-#安装前删除resources文件夹下的源文件
-read -p "PHP resource files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
-rm -rf ~/.lanmp/resources/php*
-
-
+Install_PHPwithApache(){
 #下载编译
 cd ~/.lanmp/resources
 wget -O php.tar.gz http://php.net/get/php-5.6.15.tar.gz/from/this/mirror
@@ -93,19 +83,4 @@ wget -O /usr/local/apache/htdocs/phpmyadmin.tar.gz https://files.phpmyadmin.net/
 tar -zxf /usr/local/apache/htdocs/phpmyadmin.tar.gz -C /usr/local/apache/htdocs/
 mv /usr/local/apache/htdocs/phpMyAdmin-* /usr/local/apache/htdocs/phpmyadmin
 rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
-
-#询问是否删除源文件
-read -p "Would you like to delete resource files downloaded in ~/.lanmp/resources?[Y/N]" afterdel
-if [ "$afterdel" = "Y" ] || [ "$afterdel" = "y" ]; then
-    rm -rf ~/.lanmp/resources/php*
-    echo "Resources files deleted."
-else
-    echo "Installation finished without delete resource files."
-fi
-
-
-echo "================================================"
-echo "脚本已运行完成 Script Written by Junorz.com"
-echo "访问http://您的网址/tz.php可以访问PHP探针"
-echo "访问http://您的网址/phpmyadmin可以访问phpmyadmin"
-echo "================================================"
+}

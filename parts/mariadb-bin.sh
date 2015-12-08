@@ -10,56 +10,7 @@
 # 其他地方也没有特意地将MySQL换成MariaDB
 #====================================================================
 
-# 检查是否为管理员
-if [ $(id -u) != "0" ]; then
-    echo "Please login as root to run this script"
-    exit 1
-fi
-
-#安装前删除resources文件夹下的源文件
-read -p "Mariadb resource files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
-rm -rf ~/.lanmp/resources/mariadb*
-
-#询问用户设置默认密码
-read -p "Enter a password for MariaDB root:" rootpwd
-if [ "$rootpwd" = "" ]; then
-	rootpwd="root"
-fi
-echo "=================================================="
-echo "MariaDB root password will be set to:$rootpwd"
-echo "=================================================="
-
-#下载二进制安装包
-read -p "Is your system 32bit or 64bit?(Enter 32 or 64)" sysbit
-if [ "$sysbit" = "32" ]; then
-	yum -y install glibc
-	rpm -qa|grep glibc
-	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
-	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-glibc_214-x86/mariadb-10.1.9-linux-glibc_214-i686.tar.gz
-	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-x86/mariadb-10.1.9-linux-i686.tar.gz
-	else
-		echo "Please enter Y or N.Try to run this script again."
-		exit 1
-	fi
-elif [ "$sysbit" = "64" ]; then
-	yum -y install glibc
-	rpm -qa|grep glibc
-	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
-	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-glibc_214-x86_64/mariadb-10.1.9-linux-glibc_214-x86_64.tar.gz
-	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-		wget -O ~/.lanmp/resources/mariadb.tar.gz https://downloads.mariadb.org/f/mariadb-10.1.9/bintar-linux-x86_64/mariadb-10.1.9-linux-x86_64.tar.gz
-	else
-		echo "Please enter Y or N.Try to run this script again."
-		exit 1
-	fi
-else
-	echo "Cannot detect your system's type.Please enter a legal value."
-	exit 1
-fi
-
+Install_MariaDBin(){
 #解压到相应目录
 echo "Extracting Mariadb.tar.gz....."
 tar -zxf ~/.lanmp/resources/mariadb.tar.gz -C /usr/local
@@ -91,16 +42,4 @@ service mysqld start
 
 #设置管理员密码
 /usr/local/mysql/bin/mysqladmin -u root password $rootpwd
-
-#询问是否删除源文件
-read -p "Would you like to delete resource files downloaded in ~/.lanmp/resources?[Y/N]" afterdel
-if [ "$afterdel" = "Y" ] || [ "$afterdel" = "y" ]; then
-    rm -rf ~/.lanmp/resources/mariadb*
-    echo "Resources files deleted."
-else
-    echo "Installation finished without delete resource files."
-fi
-
-echo "==========================================="
-echo "脚本已运行完成 Script Written by Junorz.com"
-echo "==========================================="
+}

@@ -10,26 +10,7 @@
 # 其他地方也没有特意地将MySQL换成MariaDB
 #====================================================================
 
-# 检查是否为管理员
-if [ $(id -u) != "0" ]; then
-    echo "Please login as root to run this script"
-    exit 1
-fi
-
-#安装前删除resources文件夹下的源文件
-read -p "Mariadb resource files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
-rm -rf ~/.lanmp/resources/mariadb*
-
-
-#询问用户设置默认密码
-read -p "Enter a password for MariaDB root:" rootpwd
-if [ "$rootpwd" = "" ]; then
-	rootpwd="root"
-fi
-echo "=================================================="
-echo "MariaDB root password will be set to:$rootpwd"
-echo "=================================================="
-
+Install_MairaDB(){
 #创建运行Mariadb进程的用户
 groupadd mysql
 useradd -r -g mysql mysql
@@ -64,16 +45,4 @@ service mysqld start
 
 #设置管理员密码
 /usr/local/mysql/bin/mysqladmin -u root password $rootpwd
-
-#询问是否删除源文件
-read -p "Would you like to delete resource files downloaded in ~/.lanmp/resources?[Y/N]" afterdel
-if [ "$afterdel" = "Y" ] || [ "$afterdel" = "y" ]; then
-    rm -rf ~/.lanmp/resources/mariadb*
-    echo "Resources files deleted."
-else
-    echo "Installation finished without delete resource files."
-fi
-
-echo "==========================================="
-echo "脚本已运行完成 Script Written by Junorz.com"
-echo "==========================================="
+}

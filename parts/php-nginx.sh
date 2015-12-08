@@ -8,17 +8,7 @@
 #
 #====================================================================
 
-
-# 检查是否为管理员
-if [ $(id -u) != "0" ]; then
-    echo "Please login as root to run this script"
-    exit 1
-fi
-
-#安装前删除resources文件夹下的源文件
-read -p "PHP resource files in ~/.lanmp/resources must be deleted before installation, press Enter to continue or Ctrl+C to quit this script."
-rm -rf ~/.lanmp/resources/php*
-rm -rf ~/.lanmp/resources/nginx.conf
+Install_PHPwithNginx(){
 
 #尝试下载nginx配置文件
 wget -O ~/.lanmp/resources/nginx.conf http://source.myclouds.org/nginx.conf
@@ -114,19 +104,4 @@ tar -zxf /usr/local/nginx/html/phpmyadmin.tar.gz -C /usr/local/nginx/html/
 mv /usr/local/nginx/html/phpMyAdmin-* /usr/local/nginx/html/phpmyadmin
 rm -rf /usr/local/nginx/html/phpmyadmin.tar.gz
 
-#询问是否删除源文件
-read -p "Would you like to delete resource files downloaded in ~/.lanmp/resources?[Y/N]" afterdel
-if [ "$afterdel" = "Y" ] || [ "$afterdel" = "y" ]; then
-    rm -rf ~/.lanmp/resources/php*
-    rm -rf ~/.lanmp/resources/nginx.conf
-    echo "Resources files deleted."
-else
-    echo "Installation finished without delete resource files."
-fi
-
-
-echo "================================================"
-echo "脚本已运行完成 Script Written by Junorz.com"
-echo "访问http://您的网址/tz.php可以访问PHP探针"
-echo "访问http://您的网址/phpmyadmin可以访问phpmyadmin"
-echo "================================================"
+}
