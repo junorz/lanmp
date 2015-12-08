@@ -203,7 +203,7 @@ if [ "$WhatInstall" = "lnmp" ]; then
       Nginx_Version
       MariaDB_RootPassword
       MariaDB_Version
-      Preinstall
+      Preinstall_Min
       Install_Nginx
       Install_MariaDBin
       Install_PHPwithNginx
@@ -211,7 +211,7 @@ elif [ "$WhatInstall" = "lamp" ]; then
       Nginx_Version
       MariaDB_RootPassword
       MariaDB_Version
-      Preinstall_Min
+      Preinstall
       Install_Apache
       Install_MariaDBin
       Install_PHPwithApache
