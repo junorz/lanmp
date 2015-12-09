@@ -15,7 +15,7 @@
 
 php_fpm_BIN=/usr/local/php/sbin/php-fpm
 php_fpm_CONF=/usr/local/php/etc/php-fpm.conf
-php_fpm_PID=/usr/local/php/etc/php-fpm.pid
+php_fpm_PID=/usr/local/php/var/run/php-fpm.pid
 
 
 php_opts="--fpm-config $php_fpm_CONF"

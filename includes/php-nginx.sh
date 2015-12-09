@@ -62,9 +62,8 @@ cp php.ini-development /usr/local/php/etc/php.ini
 cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
 cp sapi/fpm/php-fpm /usr/bin
 
-
-#启动php-fpm请直接在命令行输入php
-#停止php-fpm请直接在命令行输入pkill php
+#使php-fpm产生pid文件
+sed -i "s/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g" /usr/local/php/etc/php-fpm.conf
 
 #加入开机自启动
 cp ~/.lanmp/includes/init.phpfpm /etc/init.d/php-fpm
@@ -85,10 +84,10 @@ sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/php/etc
 
 #替换Nginx.conf文件以便支持PHP文件
 mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx_backup.conf
-cp ~/.lanmp/parts/nginx.conf /usr/local/nginx/conf/nginx.conf
+cp ~/.lanmp/includes/nginx.conf /usr/local/nginx/conf/nginx.conf
 
 #重启nginx
-/usr/bin/nginx -s reload
+service nginx restart
 
 #启动php-fpm进程
 service php-fpm start
