@@ -67,7 +67,8 @@ cp sapi/fpm/php-fpm /usr/bin
 #停止php-fpm请直接在命令行输入pkill php
 
 #加入开机自启动
-cp ~/.lanmp/includes/StartupScript_phpfpm /etc/init.d/php-fpm
+cp ~/.lanmp/includes/init.phpfpm /etc/init.d/php-fpm
+chmod +x /etc/init.d/php-fpm
 if [ "$PM" = "yum" ]; then
     chkconfig --add php-fpm
     chkconfig php-fpm on

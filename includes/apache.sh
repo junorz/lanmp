@@ -44,6 +44,7 @@ sed -i "3 a #description:httpd" /usr/local/apache/bin/apachectl
 
 #添加服务
 cp /usr/local/apache/bin/apachectl /etc/init.d/httpd
+chmod +x /etc/init.d/httpd
 if [ "$PM" = "yum" ]; then
     chkconfig --add httpd
     chkconfig httpd on

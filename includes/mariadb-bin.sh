@@ -31,6 +31,7 @@ chown -R mysql /usr/local/mysql/data
 
 #开机自启动
 cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+chmod +x /etc/init.d/mysqld
 if [ "$PM" = "yum" ]; then
     chkconfig --add mysqld
     chkconfig mysqld on

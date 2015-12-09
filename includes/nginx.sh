@@ -32,7 +32,8 @@ ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
 #重新载入nginx.conf请直接在命令行输入nginx -s reload
 
 #加入开机自启动
-cp ~/.lanmp/includes/StartupScript_nginx /etc/init.d/nginx
+cp ~/.lanmp/includes/init.nginx /etc/init.d/nginx
+chmod +x /etc/init.d/nginx
 if [ "$PM" = "yum" ]; then
     chkconfig --add nginx
     chkconfig nginx on
@@ -41,5 +42,5 @@ elif [ "$PM" = "apt" ]; then
 fi
 
 #启动Nginx
-/usr/bin/nginx
+service nginx start
 }
