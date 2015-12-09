@@ -40,6 +40,7 @@ if [ "$uninst" = 1 ]; then
   elif [ "$PM" = "apt" ]; then
       update-rc.d -f nginx remove
   fi
+  rm -rf /etc/init.d/nginx
 	echo "Nginx Uninstalled"
 elif [ "$uninst" = 2 ]; then
 	echo "Uninstalling Apache..."
@@ -79,6 +80,7 @@ elif [ "$uninst" = 4 ]; then
   elif [ "$PM" = "apt" ]; then
       update-rc.d -f php-fpm remove
   fi
+  rm -rf /etc/init.d/php-fpm
 	rm -rf /usr/bin/php-fpm
 	rm -rf /usr/local/php
 	rm -rf ~/.lanmp/resources/php*
@@ -113,6 +115,8 @@ elif [ "$uninst" = 6 ]; then
       update-rc.d -f mysqld remove
   fi
 	rm -rf /etc/init.d/mysqld
+  rm -rf /etc/init.d/nginx
+  rm -rf /etc/init.d/php-fpm
 	rm -rf /usr/local/mysql
 	rm -rf /etc/my.cnf
 	rm -rf ~/.lanmp/resources/mariadb*
