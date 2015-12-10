@@ -28,6 +28,12 @@ fi
 #获取系统类型
 Get_Dist_Name
 
+#检查系统是否被脚本支持
+if [ "$DISTRO" = "unknow" ]; then
+  echo "Your System is not being supported yet."
+  exit 1
+fi
+
 #检查用户需要安装什么
 WhatInstall="Noinstall"
 case "$1" in
