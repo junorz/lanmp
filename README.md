@@ -90,6 +90,7 @@ bash ~/.lanmp/install.sh nginx
 
 <p>2.安装<code>MariaDB</code></p>
 <p>MariaDB分为使用<code>二进制包</code>（推荐）和<code>源码编译</code>安装。小内存服务器慎用源代码安装，可能会因为内存不够编译失败。</p>
+<p>安装之前会提示您输入root密码，如果回车则默认密码为root。</p>
 <p>使用二进制包安装，请运行以下命令：</p>
 <pre><code>
 bash ~/.lanmp/install.sh mariadbin
@@ -99,7 +100,7 @@ bash ~/.lanmp/install.sh mariadbin
 <pre><code>
 bash ~/.lanmp/install.sh mariadb
 </code></pre>
-<p>安装完成后会提示您输入root密码，如果回车则默认密码为root。</p>
+
 
 <p>3.安装<code>PHP</code></p>
 <pre><code>
@@ -116,6 +117,7 @@ bash ~/.lanmp/install.sh apache
 
 <p>2.安装<code>MariaDB</code></p>
 <p>MariaDB分为使用<code>二进制包</code>（推荐）和<code>源码编译</code>安装。小内存服务器慎用源代码安装，可能会因为内存不够编译失败。</p>
+<p>安装之前会提示您输入root密码，如果回车则默认密码为root。</p>
 <p>使用二进制包安装，请运行以下命令：</p>
 <pre><code>
 bash ~/.lanmp/install.sh mariadbin
@@ -125,7 +127,7 @@ bash ~/.lanmp/install.sh mariadbin
 <pre><code>
 bash ~/.lanmp/install.sh mariadb
 </code></pre>
-<p>安装完成后会提示您输入root密码，如果回车则默认密码为root。</p>
+
 
 <p>3.安装<code>PHP</code></p>
 <pre><code>
