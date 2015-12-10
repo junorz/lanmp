@@ -19,7 +19,7 @@ cd ~/.lanmp/resources
 
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/httpd.tar.gz ]; then
-  wget -O httpd.tar.gz  http://sourceforge.net/projects/lanmp/files/httpd-2.4.12.tar.gz/download
+  wget -O httpd.tar.gz  http://sourceforge.net/projects/lanmp/files/httpd-2.4.17.tar.gz/download
 fi
 
 tar -zxf httpd.tar.gz
