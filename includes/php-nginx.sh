@@ -15,7 +15,7 @@ cd ~/.lanmp/resources
 
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/php.tar.gz ]; then
-	wget -O php.tar.gz http://php.net/get/php-5.6.15.tar.gz/from/this/mirror
+	wget -O php.tar.gz http://php.net/get/php-7.0.0.tar.gz/from/this/mirror
 fi
 
 tar -zxf php.tar.gz
@@ -25,7 +25,6 @@ cd php*
 --enable-fpm \
 --with-fpm-user=www \
 --with-fpm-group=www \
---with-mysql=/usr/local/mysql \
 --with-mysqli=/usr/local/mysql/bin/mysql_config \
 --with-pdo-mysql=/usr/local/mysql \
 --with-iconv-dir \
@@ -60,6 +59,7 @@ make && make install
 #复制配置文件
 cp php.ini-development /usr/local/php/etc/php.ini
 cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
+cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf
 cp sapi/fpm/php-fpm /usr/bin
 
 #使php-fpm产生pid文件
@@ -76,7 +76,7 @@ elif [ "$PM" = "apt" ]; then
 fi
 
 #配置php.ini文件
-sed -i "s/^.*cgi.fix_pathinfo=.*/cgi.fix_pathinfo=0/g" /usr/local/php/etc/php.ini
+sed -i "s/cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /usr/local/php/etc/php.ini
 sed -i "s/;date.timezone =/date.timezone = Asia\/Shanghai/g" /usr/local/php/etc/php.ini
 sed -i "s/post_max_size =.*/post_max_size = 50M/g" /usr/local/php/etc/php.ini
 sed -i "s/upload_max_filesize =.*/upload_max_filesize = 50M/g" /usr/local/php/etc/php.ini

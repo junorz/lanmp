@@ -13,7 +13,7 @@ Install_PHPwithApache(){
 cd ~/.lanmp/resources
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/php.tar.gz ]; then
-  wget -O php.tar.gz http://php.net/get/php-5.6.15.tar.gz/from/this/mirror
+  wget -O php.tar.gz http://php.net/get/php-7.0.0.tar.gz/from/this/mirror
 fi
 tar -zxf php.tar.gz
 cd php*
@@ -23,7 +23,6 @@ cd php*
 --with-fpm-user=www \
 --with-fpm-group=www \
 --with-apxs2=/usr/local/apache/bin/apxs \
---with-mysql=/usr/local/mysql \
 --with-mysqli=/usr/local/mysql/bin/mysql_config \
 --with-pdo-mysql=/usr/local/mysql \
 --with-iconv-dir \
