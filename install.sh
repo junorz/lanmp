@@ -61,14 +61,6 @@ case "$1" in
             exit 1
         fi
     ;;
-    premin)
-        read -p "Do you want to install the Minimal Combine Environment?[Y/N]" ifinstall
-        if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ]; then
-            WhatInstall="premin"
-        else
-            exit 1
-        fi
-    ;;
     nginx)
         read -p "Do you want to install Nginx only?[Y/N]" ifinstall
         if [ "$ifinstall" = "Y" ] || [ "$ifinstall" = "y" ]; then
@@ -159,7 +151,7 @@ if [ "$WhatInstall" = "lnmp" ]; then
       MariaDB_RootPassword
       MariaDB_Version
       StartInstallation
-      Preinstall_Min
+      Preinstall
       Install_Nginx
       Install_MariaDBin
       Install_PHPwithNginx
@@ -175,9 +167,6 @@ elif [ "$WhatInstall" = "lamp" ]; then
 elif [ "$WhatInstall" = "pre" ]; then
       StartInstallation
       Preinstall
-elif [ "$WhatInstall" = "premin" ]; then
-      StartInstallation
-      Preinstall_Min
 elif [ "$WhatInstall" = "nginx" ]; then
       Nginx_Version
       StartInstallation

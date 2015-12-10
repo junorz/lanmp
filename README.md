@@ -29,8 +29,7 @@ install.sh lnmp
 <pre><code>
 lnmp          安装LNMP
 lamp          安装LAMP
-pre           安装编译环境（即：包含CMake,APR的编译环境，适合Apache和编译版本的Mariadb选用）
-premin        最小安装编译环境（即：不包含CMake,APR的编译环境，适合Nginx和二进制版本Mariadb选用）
+pre           安装编译环境
 nginx         安装Nginx
 apache        安装Apache
 mariadb       编译安装Mariadb
@@ -69,15 +68,8 @@ chmod -R +x ~/.lanmp
 </code></pre>
 
 <h3>6.2 安装编译环境</h3>
-<li>如果你需要安装Apache，编译环境需要完整完装。</li>
 <pre><code>
 bash ~/.lanmp/install.sh pre
-</code></pre>
-
-<li>如果你需要安装Nginx，则不需要安装诸如APR等库，可以最小安装编译环境。</li>
-<li>但是，如果你需要编译安装MariaDB，因为需要用到CMake，完整安装编译环境。</li>
-<pre><code>
-bash ~/.lanmp/install.sh premin
 </code></pre>
 
 <h3>6.3 根据需要选择组合</h3>
@@ -101,7 +93,7 @@ bash ~/.lanmp/install.sh nginx
 <pre><code>
 bash ~/.lanmp/install.sh mariadbin
 </code></pre>
-<p>运行后会询问您是32位系统还是64位系统，GLIBC是否为2.14版本以上，按照提示输入即可。</p>
+<p>运行后会询问您GLIBC是否为2.14版本以上，按照提示输入即可。</p>
 <p>使用源码编译安装，请运行以下命令：</p>
 <pre><code>
 bash ~/.lanmp/install.sh mariadb
@@ -127,7 +119,7 @@ bash ~/.lanmp/install.sh apache
 <pre><code>
 bash ~/.lanmp/install.sh mariadbin
 </code></pre>
-<p>运行后会询问您是32位系统还是64位系统，GLIBC是否为2.14版本以上，按照提示输入即可。</p>
+<p>运行后会询问您GLIBC是否为2.14版本以上，按照提示输入即可。</p>
 <p>使用源码编译安装，请运行以下命令：</p>
 <pre><code>
 bash ~/.lanmp/install.sh mariadb

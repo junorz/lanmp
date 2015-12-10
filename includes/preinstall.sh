@@ -18,6 +18,39 @@ Dependence
 echo "/usr/local/lib" >> /etc/ld.so.conf
 ldconfig
 
+
+#安装Libmcrypt,mhash,mcrypt
+cd ~/.lanmp/resources
+#判断是否已经存在源文件
+if [ ! -f ~/.lanmp/resources/libmcrypt.tar.gz ]; then
+  wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
+fi
+tar -zxf libmcrypt.tar.gz
+cd ~/.lanmp/resources/libmcrypt*
+./configure
+make && make install
+cd ~/.lanmp/resources/libltdl/
+./configure --enable-ltdl-install
+make && make install
+ldconfig
+
+if [ ! -f ~/.lanmp/resources/mcrypt.tar.gz ]; then
+  wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
+fi
+tar -zxf mcrypt.tar.gz
+cd ~/.lanmp/resources/mhash*
+./configure
+make && make install
+ldconfig
+
+if [ ! -f ~/.lanmp/resources/mhash.tar.gz ]; then
+  wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
+fi
+tar -zxf mhash.tar.gz
+cd ~/.lanmp/resources/mcrypt*
+./configure
+make && make install
+
 #安装pcre
 cd ~/.lanmp/resources
 if [ ! -f ~/.lanmp/resources/pcre.tar.gz ]; then
