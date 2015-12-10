@@ -15,15 +15,15 @@ if [ $(id -u) != "0" ]; then
 fi
 
 #引用安装文件
-. includes/functions.sh
-. includes/preinstall.sh
-. includes/pre-min.sh
-. includes/nginx.sh
-. includes/apache.sh
-. includes/mariadb.sh
-. includes/mariadb-bin.sh
-. includes/php-nginx.sh
-. includes/php-apache.sh
+. ~/.lanmp/includes/functions.sh
+. ~/.lanmp/includes/preinstall.sh
+. ~/.lanmp/includes/pre-min.sh
+. ~/.lanmp/includes/nginx.sh
+. ~/.lanmp/includes/apache.sh
+. ~/.lanmp/includes/mariadb.sh
+. ~/.lanmp/includes/mariadb-bin.sh
+. ~/.lanmp/includes/php-nginx.sh
+. ~/.lanmp/includes/php-apache.sh
 
 #获取系统类型
 Get_Dist_Name
