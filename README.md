@@ -1,5 +1,7 @@
 <h1>简介</h1>
 <ol>
+<li>此脚本所编译或安装的程序版本为：<h4>Nginx 1.8.0  /  Apache 2.4.17  +  MariaDB 10.1.9  + PHP 7</h4>
+其中Nginx默认安装目前的Stable版本，但在安装过程中脚本会引导问询是否安装最新Mainline版本。</li>
 <li>此脚本采用一键/分步安装的方式可以在采用Centos/Debian/Ubuntu服务器的系统上快速布署WEB环境。</li>
 <li>已在<code>Centos6</code>/<code>Centos7</code>的32和64位系统下测试完成。</li>
 <li>目前可以布署的组合有<code>Nginx</code>+<code>MariaDB</code>+<code>PHP</code>或<code>Apache</code>+<code>MariaDB</code>+<code>PHP</code></li>
@@ -27,8 +29,8 @@ install.sh lnmp
 <pre><code>
 lnmp          安装LNMP
 lamp          安装LAMP
-pre           安装编译环境（即：包含Bison,CMake,APR的编译环境，适合Apache和编译版本的Mariadb选用）
-premin        最小安装编译环境（即：不包含Bison,CMake,APR的编译环境，适合Nginx和二进制版本Mariadb选用）
+pre           安装编译环境（即：包含CMake,APR的编译环境，适合Apache和编译版本的Mariadb选用）
+premin        最小安装编译环境（即：不包含CMake,APR的编译环境，适合Nginx和二进制版本Mariadb选用）
 nginx         安装Nginx
 apache        安装Apache
 mariadb       编译安装Mariadb
