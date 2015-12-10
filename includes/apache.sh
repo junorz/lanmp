@@ -39,11 +39,9 @@ make && make install
 sed -i "s/User daemon/User www/g" /usr/local/apache/conf/httpd.conf
 sed -i "s/Group daemon/Group www/g" /usr/local/apache/conf/httpd.conf
 sed -i "s/#ServerName www.example.com:80/ServerName localhost/g" /usr/local/apache/conf/httpd.conf
-sed -i "2 a #chkconfig:345 85 15" /usr/local/apache/bin/apachectl
-sed -i "3 a #description:httpd" /usr/local/apache/bin/apachectl
 
 #添加服务
-cp /usr/local/apache/bin/apachectl /etc/init.d/httpd
+cp ~/.lanmp/includes/init.httpd /etc/init.d/httpd
 chmod +x /etc/init.d/httpd
 if [ "$PM" = "yum" ]; then
     chkconfig --add httpd
