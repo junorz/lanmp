@@ -17,7 +17,6 @@ fi
 #引用安装文件
 . ~/.lanmp/includes/functions.sh
 . ~/.lanmp/includes/preinstall.sh
-. ~/.lanmp/includes/pre-min.sh
 . ~/.lanmp/includes/nginx.sh
 . ~/.lanmp/includes/apache.sh
 . ~/.lanmp/includes/mariadb.sh
