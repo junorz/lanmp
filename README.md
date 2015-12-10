@@ -1,4 +1,4 @@
-<h1>简介</h1>
+<h1>一、简介</h1>
 <ol>
 <li>此脚本所编译或安装的程序版本为：<h4>Nginx 1.8.0  /  Apache 2.4.17  +  MariaDB 10.1.9  + PHP 7</h4>
 其中Nginx默认安装目前的Stable版本，但在安装过程中脚本会引导问询是否安装最新Mainline版本。</li>
@@ -9,17 +9,17 @@
 <li>分步安装可以避免一键包中途产生错误需要重头再来的问题。</li>
 </ol>
 
-<h1>如何使用git命令同步到本地</h1>
+<h1>二、如何使用git命令同步到本地</h1>
 <pre><code>
 git clone https://github.com/junorz/lanmp.git ~/.lanmp
 </code></pre>
 <h4>注意：一定不能同步到 ~/.lanmp 以外的地方！！</h4>
 
-<h1>如何更新到最新脚本</h1>
+<h1>三、如何更新到最新脚本</h1>
 <pre><code>cd ~/.lanmp
 git pull</code></pre>
 
-<h1>安装方法</h1>
+<h1>四、安装方法</h1>
 <p>只需要给install.sh文件传递参数即可。例如：</p>
 <pre><code>
 install.sh lnmp
@@ -40,15 +40,15 @@ phpapache     在Apache之上安装PHP
 </code></pre>
 <p>下面有一些更为具体的安装实例：</p>
 
-<h1>一键安装实例</h1>
-<p>1.下载脚本文件</p>
+<h1>五、一键安装实例</h1>
+<h3>5.1 下载脚本文件</h3>
 <pre><code>
 yum -y install git wget
 git clone https://github.com/junorz/lanmp.git ~/.lanmp
 chmod -R +x ~/.lanmp
 </code></pre>
 
-<p>2.选择搭建环境</p>
+<h3>5.2 选择搭建环境</h3>
 <p>目前可以布署的组合有<code>Nginx</code>+<code>MariaDB</code>+<code>PHP</code>或<code>Apache</code>+<code>MariaDB</code>+<code>PHP</code></p>
 <p>安装<code>Nginx</code>+<code>MariaDB</code>+<code>PHP</code></p>
 <pre><code>
@@ -60,15 +60,15 @@ bash ~/.lanmp/install.sh lamp
 </code></pre>
 <p>根据屏幕上的提示完成安装即可</p>
 
-<h1>分步安装实列</h1>
-<p>1.下载脚本文件</p>
+<h1>六、分步安装实列</h1>
+<h3>6.1 下载脚本文件</h3>
 <pre><code>
 yum -y install git
 git clone https://github.com/junorz/lanmp.git ~/.lanmp
 chmod -R +x ~/.lanmp
 </code></pre>
 
-<p>2.安装编译环境</p>
+<h3>6.2 安装编译环境</h3>
 <li>如果你需要安装Apache，编译环境需要完整完装。</li>
 <pre><code>
 bash ~/.lanmp/install.sh pre
@@ -80,7 +80,11 @@ bash ~/.lanmp/install.sh pre
 bash ~/.lanmp/install.sh premin
 </code></pre>
 
-<h4>搭建Nginx+MariaDB+PHP环境</h4>
+<h3>6.3 根据需要选择组合</h3>
+<p>可以根据自己的需求自定义组合安装生产环境，这里给出的是最常见的两种组合。</p>
+<p>当然你也可以只安装Nginx或只安装Apache等等。</p>
+
+<h4>6.3.1 搭建Nginx+MariaDB+PHP环境</h4>
 <p>因为PHP需要在编译时指定MariaDB相关文件位置，需要最后安装。</p>
 <p>Nginx/MariaDB安装顺序随意。</p>
 <p>1.安装<code>Nginx</code></p>
@@ -103,13 +107,12 @@ bash ~/.lanmp/install.sh mariadbin
 bash ~/.lanmp/install.sh mariadb
 </code></pre>
 
-
 <p>3.安装<code>PHP</code></p>
 <pre><code>
 bash ~/.lanmp/install.sh phpnginx
 </code></pre>
 
-<h4>搭建Apache+MariaDB+PHP环境</h4>
+<h4>6.3.2 搭建Apache+MariaDB+PHP环境</h4>
 <p>因为PHP需要在编译时指定Apache及MariaDB相关文件位置，需要最后安装。</p>
 <p>Apache/MariaDB安装顺序随意。</p>
 <p>1.安装<code>Apache</code></p>
@@ -130,13 +133,12 @@ bash ~/.lanmp/install.sh mariadbin
 bash ~/.lanmp/install.sh mariadb
 </code></pre>
 
-
 <p>3.安装<code>PHP</code></p>
 <pre><code>
 bash ~/.lanmp/install.sh phpapache
 </code></pre>
 
-<h1>卸载</h1>
+<h1>七、卸载</h1>
 运行uninstall.sh即可。
 <pre><code>
 bash ~/.lanmp/uninstall.sh
