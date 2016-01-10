@@ -15,7 +15,7 @@ cd ~/.lanmp/resources
 
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/php.tar.gz ]; then
-	wget -O php.tar.gz http://php.net/get/php-7.0.0.tar.gz/from/this/mirror
+	wget -O php.tar.gz http://php.net/get/php-7.0.2.tar.gz/from/this/mirror
 fi
 
 tar -zxf php.tar.gz
@@ -93,10 +93,11 @@ service nginx restart
 service php-fpm start
 
 #下载探针
-wget -O /usr/local/nginx/html/tz.zip http://www.yahei.net/tz/tz.zip
-cd /usr/local/nginx/html/
-unzip tz.zip
-rm -rf /usr/local/nginx/html/tz.zip
+#目前PHP7没有好的探针，先保留
+#wget -O /usr/local/nginx/html/tz.zip http://www.yahei.net/tz/tz.zip
+#cd /usr/local/nginx/html/
+#unzip tz.zip
+#rm -rf /usr/local/nginx/html/tz.zip
 
 #下载phpMyAdmin
 wget -O /usr/local/nginx/html/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.5.2/phpMyAdmin-4.5.2-all-languages.tar.gz
