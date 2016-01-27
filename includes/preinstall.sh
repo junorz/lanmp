@@ -50,6 +50,7 @@ tar -zxf mhash.tar.gz
 cd ~/.lanmp/resources/mcrypt*
 ./configure
 make && make install
+ldconfig
 
 #安装pcre
 cd ~/.lanmp/resources
