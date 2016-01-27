@@ -13,9 +13,9 @@ Nginx_Version(){
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/nginx.tar.gz ]; then
   echo "The version of Nginx can be referenced to http://nginx.org/en/download.html"
-  read -p "Enter the version you want to install(1.8.0 by deafult):" vernginx
+  read -p "Enter the version you want to install(1.8.1 by deafult):" vernginx
   if [ "$vernginx" = "" ]; then
-	   vernginx="1.8.0"
+	   vernginx="1.8.1"
   fi
   read -p "Do you want to install Nginx $vernginx?[Y/N]" ifinstallnginx
   if [ "$ifinstallnginx" = "Y" ] || [ "$ifinstallnginx" = "y" ]; then
