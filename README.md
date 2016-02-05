@@ -1,6 +1,6 @@
 <h1>一、简介</h1>
 <ol>
-<li>此脚本所编译或安装的程序版本为：<h4>Nginx 1.8.0  /  Apache 2.4.17  +  MariaDB 10.1.9  + PHP 7.0.2</h4>
+<li>此脚本所编译或安装的程序版本为：<h4>Nginx 1.8.1  /  Apache 2.4.17  +  MariaDB 10.1.9  + PHP 7.0.3</h4>
 其中Nginx默认安装目前的Stable版本，但在安装过程中脚本会引导问询是否安装最新Mainline版本。</li>
 <li>此脚本采用一键/分步安装的方式可以在采用Centos/Debian/Ubuntu服务器的系统上快速布署WEB环境。</li>
 <li>已在<code>Centos6</code>/<code>Centos7</code>的32和64位系统下测试完成。</li>
