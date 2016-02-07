@@ -82,7 +82,7 @@ service httpd restart
 #rm -rf /usr/local/apache/htdocs/tz.zip
 
 #下载phpMyAdmin
-wget -O /usr/local/apache/htdocs/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.5.2/phpMyAdmin-4.5.2-all-languages.tar.gz
+wget -O /usr/local/apache/htdocs/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.5.4.1/phpMyAdmin-4.5.4.1-all-languages.zip
 tar -zxf /usr/local/apache/htdocs/phpmyadmin.tar.gz -C /usr/local/apache/htdocs/
 mv /usr/local/apache/htdocs/phpMyAdmin-* /usr/local/apache/htdocs/phpmyadmin
 rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
