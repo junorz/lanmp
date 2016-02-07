@@ -54,9 +54,9 @@ if [ ! -f ~/.lanmp/resources/mariadbin.tar.gz ]; then
   	ldd --version
   	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
   	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-  		wget -O ~/.lanmp/resources/mariadbin.tar.gz http://sourceforge.net/projects/lanmp/files/MariaDB-10.1.11/mariadb-10.1.11-linux-glibc_214-i686.tar.gz
+  		wget -O ~/.lanmp/resources/mariadbin.tar.gz $mariadb_bin_glibc214_32_url
   	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-  		wget -O ~/.lanmp/resources/mariadbin.tar.gz http://sourceforge.net/projects/lanmp/files/MariaDB-10.1.11/mariadb-10.1.11-linux-i686.tar.gz
+  		wget -O ~/.lanmp/resources/mariadbin.tar.gz $mariadb_bin_32_url
   	else
   		echo "Please enter Y or N.Try to run this script again."
   		exit 1
@@ -65,9 +65,9 @@ if [ ! -f ~/.lanmp/resources/mariadbin.tar.gz ]; then
   	ldd --version
   	read -p "Is the version of glibc showed above over 2.14+?[Y/N]" verglibc
   	if [ "$verglibc" = "Y" ] || [ "$verglibc" = "y" ]; then
-  		wget -O ~/.lanmp/resources/mariadbin.tar.gz http://sourceforge.net/projects/lanmp/files/MariaDB-10.1.11/mariadb-10.1.11-linux-glibc_214-x86_64.tar.gz
+  		wget -O ~/.lanmp/resources/mariadbin.tar.gz $mariadb_bin_glicb214_64_url
   	elif [ "$verglibc" = "N" ] || [ "$verglibc" = "n" ]; then
-  		wget -O ~/.lanmp/resources/mariadbin.tar.gz http://sourceforge.net/projects/lanmp/files/MariaDB-10.1.11/mariadb-10.1.11-linux-x86_64.tar.gz
+  		wget -O ~/.lanmp/resources/mariadbin.tar.gz $mariadb_bin_64_url
   	else
   		echo "Please enter Y or N.Try to run this script again."
   		exit 1

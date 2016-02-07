@@ -15,6 +15,7 @@ if [ $(id -u) != "0" ]; then
 fi
 
 #引用安装文件
+. ~/.lanmp/includes/urls.sh
 . ~/.lanmp/includes/functions.sh
 . ~/.lanmp/includes/preinstall.sh
 . ~/.lanmp/includes/nginx.sh

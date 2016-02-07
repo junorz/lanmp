@@ -8,7 +8,6 @@
 #
 #====================================================================
 
-
 Install_Apache(){
 #创建运行Apache的用户
 groupadd www
@@ -19,7 +18,7 @@ cd ~/.lanmp/resources
 
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/httpd.tar.gz ]; then
-  wget -O httpd.tar.gz  http://sourceforge.net/projects/lanmp/files/httpd-2.4.18.tar.gz
+  wget -O httpd.tar.gz  $apacheurl
 fi
 
 tar -zxf httpd.tar.gz

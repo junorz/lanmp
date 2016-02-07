@@ -20,7 +20,7 @@ cd ~/.lanmp/resources
 
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/mariadb.tar.gz ]; then
-  wget -O mariadb.tar.gz http://sourceforge.net/projects/lanmp/files/MariaDB-10.1.11/mariadb-10.1.11.tar.gz
+  wget -O mariadb.tar.gz $mariadb_source_url
 fi
 
 tar -zxf mariadb.tar.gz

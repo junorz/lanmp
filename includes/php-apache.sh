@@ -13,7 +13,7 @@ Install_PHPwithApache(){
 cd ~/.lanmp/resources
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/php.tar.gz ]; then
-  wget -O php.tar.gz http://php.net/get/php-7.0.3.tar.gz/from/this/mirror
+  wget -O php.tar.gz $phpurl
 fi
 tar -zxf php.tar.gz
 cd php*

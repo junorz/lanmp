@@ -23,7 +23,7 @@ ldconfig
 cd ~/.lanmp/resources
 #判断是否已经存在源文件
 if [ ! -f ~/.lanmp/resources/libmcrypt.tar.gz ]; then
-  wget -O libmcrypt.tar.gz  http://sourceforge.net/projects/lanmp/files/libmcrypt-2.5.8.tar.gz/download
+  wget -O libmcrypt.tar.gz  $libmcrypturl
 fi
 tar -zxf libmcrypt.tar.gz
 cd ~/.lanmp/resources/libmcrypt*
@@ -35,7 +35,7 @@ make && make install
 ldconfig
 
 if [ ! -f ~/.lanmp/resources/mcrypt.tar.gz ]; then
-  wget -O mcrypt.tar.gz http://sourceforge.net/projects/lanmp/files/mcrypt-2.6.8.tar.gz/download
+  wget -O mcrypt.tar.gz $mcrypturl
 fi
 tar -zxf mcrypt.tar.gz
 cd ~/.lanmp/resources/mhash*
@@ -44,7 +44,7 @@ make && make install
 ldconfig
 
 if [ ! -f ~/.lanmp/resources/mhash.tar.gz ]; then
-  wget -O mhash.tar.gz http://sourceforge.net/projects/lanmp/files/mhash-0.9.9.9.tar.gz/download
+  wget -O mhash.tar.gz $mhashurl
 fi
 tar -zxf mhash.tar.gz
 cd ~/.lanmp/resources/mcrypt*
@@ -55,7 +55,7 @@ ldconfig
 #安装pcre
 cd ~/.lanmp/resources
 if [ ! -f ~/.lanmp/resources/pcre.tar.gz ]; then
-  wget -O pcre.tar.gz http://sourceforge.net/projects/pcre/files/pcre/8.37/pcre-8.37.tar.gz/download
+  wget -O pcre.tar.gz $pcreurl
 fi
 tar -zxf pcre.tar.gz
 cd ~/.lanmp/resources/pcre*
@@ -65,7 +65,7 @@ make && make install
 #安装CMake
 cd ~/.lanmp/resources
 if [ ! -f ~/.lanmp/resources/cmake.tar.gz ]; then
-  wget -O cmake.tar.gz https://cmake.org/files/v3.4/cmake-3.4.1.tar.gz
+  wget -O cmake.tar.gz $cmakeurl
 fi
 tar -zxf cmake.tar.gz
 cd ~/.lanmp/resources/cmake*
@@ -75,7 +75,7 @@ make && make install
 #安装APR
 cd ~/.lanmp/resources
 if [ ! -f ~/.lanmp/resources/apr.tar.gz ]; then
-  wget -O apr.tar.gz http://sourceforge.net/projects/lanmp/files/apr-1.5.1.tar.gz/download
+  wget -O apr.tar.gz $aprurl
 fi
 tar -zxf apr.tar.gz
 cd apr*
@@ -85,7 +85,7 @@ make && make install
 #安装APR-util
 cd ~/.lanmp/resources
 if [ ! -f ~/.lanmp/resources/apr-util.tar.gz ]; then
-  wget -O apr-util.tar.gz http://sourceforge.net/projects/lanmp/files/apr-util-1.5.4.tar.gz/download
+  wget -O apr-util.tar.gz $aprutil_url
 fi
 tar -zxf apr-util.tar.gz
 cd apr-util*
