@@ -164,8 +164,8 @@ else
     touch ~/.lanmp/preinstall.lock
   else
     echo "The installation of the Combine Environment has skipped."
+  fi
 fi
-
 }
 #================================End-编译环境安装函数-End===============================
 
