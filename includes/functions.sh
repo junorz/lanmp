@@ -156,6 +156,9 @@ if [ ! -f ~/.lanmp/preinstall.lock ]; then
 else
   read -p "The script detected that you have installed the Combine Environment before. Would you want to install it again?" Preinstall_Again
   if [ "$Preinstall_Again" = "Y" ] || [ "$Preinstall_Again" = "y" ]; then
+    sed -i "/\/usr\/local\/lib/d" /etc/ld.so.conf
+    sed -i "/mysql/d" /etc/ld.so.conf
+    sed -i "/apr/d" /etc/ld.so.conf
     Dependence
     #创建文件以示编译环境已经安装过一次
     touch ~/.lanmp/preinstall.lock
