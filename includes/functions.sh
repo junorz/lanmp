@@ -9,9 +9,23 @@
 #========================================================================================
 
 #================================Start-编译环境安装函数-Start===============================
-Preinstall(){
+Dependence(){
+#关闭SELINUX
+if [ -f /etc/selinux/config ]; then
+  sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
+  setenforce 0
+elif [ -f /etc/sysconfig/selinux ]; then
+  sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
+  setenforce 0
+fi
+
+#设置时区
+rm -rf /etc/localtime
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 #安装编译环境，然后移除自带软件
 if [ "$PM" = "yum" ]; then
+    yum -y update
     #安装编译环境
     yum -y install epel-release
     yum -y groupinstall "Development Tools"
@@ -49,11 +63,10 @@ elif [ "$PM" = "apt" ]; then
     apt-get autoremove -y && apt-get clean
 fi
 
-
 #添加系统库路径
 echo "/usr/local/lib" >> /etc/ld.so.conf
+echo "/usr/local/mysql/lib" >> /etc/ld.so.conf
 ldconfig
-
 
 #安装Libmcrypt,mhash,mcrypt
 cd ~/.lanmp/resources
@@ -132,6 +145,23 @@ make && make install
 echo "/usr/local/apr/lib" >> /etc/ld.so.conf
 echo "/usr/local/apr-util/lib" >> /etc/ld.so.conf
 ldconfig
+}
+
+Preinstall(){
+#检测是否已经安装过一次编译环境
+if [ ! -f ~/.lanmp/preinstall.lock ]; then
+  Dependence
+  #创建文件以示编译环境已经安装过一次
+  touch ~/.lanmp/preinstall.lock
+else
+  read -p "The script detected that you have installed the Combine Environment before. Would you want to install it again?" Preinstall_Again
+  if [ "$Preinstall_Again" = "Y" ] || [ "$Preinstall_Again" = "y" ]; then
+    Dependence
+    #创建文件以示编译环境已经安装过一次
+    touch ~/.lanmp/preinstall.lock
+  else
+    echo "The installation of the Combine Environment has skipped."
+fi
 
 }
 #================================End-编译环境安装函数-End===============================
@@ -160,7 +190,6 @@ if [ ! -f ~/.lanmp/resources/nginx.tar.gz ]; then
     echo "Installation interrupted.Please try again."
     exit 1
   fi
-
 fi
 }
 
@@ -328,10 +357,6 @@ elif [ "$PM" = "apt" ]; then
     update-rc.d -f mysqld defaults
 fi
 
-#设置系统库路径
-echo "/usr/local/mysql/lib" >> /etc/ld.so.conf
-ldconfig
-
 #启动服务
 service mysqld start
 
@@ -377,10 +402,6 @@ if [ "$PM" = "yum" ]; then
 elif [ "$PM" = "apt" ]; then
     update-rc.d -f mysqld defaults
 fi
-
-#设置系统库路径
-echo "/usr/local/mysql/lib" >> /etc/ld.so.conf
-ldconfig
 
 #启动服务
 service mysqld start
@@ -574,7 +595,80 @@ rm -rf /usr/local/apache/htdocs/phpmyadmin.tar.gz
 
 #===============================End-程序安装函数-End================================
 
-#===================================Start-其它函数-Start============================
+#=================================Start-卸载相关函数-Start===========================
+#------卸载Nginx------
+UninstallNginx(){
+  service nginx stop
+  rm -rf /usr/bin/nginx
+  rm -rf /usr/local/nginx
+  rm -rf ~/.lanmp/resources/nginx*
+  if [ "$PM" = "yum" ]; then
+      chkconfig nginx off
+      chkconfig --del nginx
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f nginx remove
+  fi
+  rm -rf /etc/init.d/nginx
+}
+
+#------卸载Apache------
+UninstallApache(){
+  service httpd stop
+  rm -rf /usr/local/apache
+  rm -rf ~/.lanmp/resources/httpd*
+  if [ "$PM" = "yum" ]; then
+      chkconfig httpd off
+      chkconfig --del httpd
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f httpd remove
+  fi
+  rm -rf /etc/init.d/httpd
+}
+
+#------卸载MariaDB------
+UninstallMariaDB(){
+  service mysqld stop
+  rm -rf /usr/local/mysql
+  rm -rf /etc/my.cnf
+  rm -rf ~/.lanmp/resources/mariadb*
+  if [ "$PM" = "yum" ]; then
+      chkconfig mysqld off
+      chkconfig --del mysqld
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f mysqld remove
+  fi
+  rm -rf /etc/init.d/mysqld
+}
+
+#------卸载基于Nginx的PHP------
+Uninstall_PHP_with_Nginx(){
+  service php-fpm stop
+  rm -rf /usr/bin/php-fpm
+  rm -rf /usr/local/php
+  rm -rf ~/.lanmp/resources/php*
+  rm -rf /usr/local/nginx/conf/nginx.conf
+  mv /usr/local/nginx/conf/nginx-backup.conf /usr/local/nginx/conf/nginx.conf
+  if [ "$PM" = "yum" ]; then
+      chkconfig php-fpm off
+      chkconfig --del php-fpm
+  elif [ "$PM" = "apt" ]; then
+      update-rc.d -f php-fpm remove
+  fi
+  rm -rf /etc/init.d/php-fpm
+}
+
+#------卸载基于Apache的PHP------
+Uninstall_PHP_with_Apache(){
+  sed -i "/<FilesMatch \\\.php\$>/N;/.*SetHandler application\/x-httpd-php/N;/<\/FilesMatch>/d" /usr/local/apache/conf/httpd.conf
+	sed -i "/modules\/libphp5.so/d" /usr/local/apache/conf/httpd.conf
+	rm -rf /usr/local/php
+	rm -rf ~/.lanmp/resources/php*
+}
+
+#===================================End-卸载相关函数-End=============================
+
+
+#===================================Start-其它函数-Start===========================
 #判断系统是32还是64位
 #注：这条函数来自lnmp.org
 Get_OS_Bit()

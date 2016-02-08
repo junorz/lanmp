@@ -110,6 +110,7 @@ case "$1" in
 esac
 
 #安装前删除resources文件夹下的源文件
+#如果不删除源文件，就用已经下载好的压缩包安装，但是依然会删除原有的文件夹
 read -p "Would you want to delete all files in ~/.lanmp/resources? [Y/N]" deleteresources
 if [ "$deleteresources" = "Y" ] || [ "$deleteresources" = "y" ]; then
   rm -rf ~/.lanmp/resources/libmcrypt*
