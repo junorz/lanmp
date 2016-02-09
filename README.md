@@ -129,8 +129,36 @@ bash ~/.lanmp/install.sh mariadb
 <pre><code>
 bash ~/.lanmp/install.sh phpapache
 </code></pre>
+<h1>七、如何控制LNMP/LAMP</h1>
+<p>1、Nginx</p>
+<p>启动Nginx</p>
+<pre><code>service nginx start</pre></code>
+<p>停止Nginx</p>
+<pre><code>service nginx stop</pre></code>
+<p>重新载入Nginx配置文件</p>
+<pre><code>service nginx reload</pre></code>
 
-<h1>七、卸载</h1>
+<p>2、Apache</p>
+<p>启动Apache</p>
+<pre><code>service httpd start</pre></code>
+<p>停止Apache</p>
+<pre><code>service httpd stop</pre></code>
+<p>重启Apache</p>
+<pre><code>service nginx restart</pre></code>
+
+<p>3、MariaDB</p>
+<p>启动MariaDB</p>
+<pre><code>service mysqld start</pre></code>
+<p>停止Apache</p>
+<pre><code>service mysqld stop</pre></code>
+
+<p>4、PHP-FPM</p>
+<p>启动PHP-FPM</p>
+<pre><code>service php-fpm start</pre></code>
+<p>停止PHP-FPM</p>
+<pre><code>service php-fpm stop</pre></code>
+
+<h1>八、卸载</h1>
 运行uninstall.sh即可。
 <pre><code>
 bash ~/.lanmp/uninstall.sh
